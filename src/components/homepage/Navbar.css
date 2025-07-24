@@ -7,6 +7,7 @@
   padding: 0 32px;
   height: 73px;
   transition: background 0.4s ease;
+  flex-wrap: wrap;
 }
 .navbar__brand {
   font-family: 'Italiana';
@@ -24,6 +25,9 @@
   align-items: center;
   gap: 40px;
   flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: end;
+
 }
 .navbar__links a {
   color: #fff;
@@ -35,7 +39,6 @@
 .navbar__links a:hover {
   text-decoration: none;
   color: #c3977e;
-
 }
 .navbar__lang {
   background: #252321;
@@ -66,4 +69,73 @@
   transition: background 0.2s;
 }
 
-
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0 20px;
+  }
+  .navbar__brand {
+    margin-left: 20px;
+    font-size: 22px;
+  }
+  .navbar__links {
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .navbar__links a {
+    font-size: 15px;
+  }
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 10px 16px;
+    align-items: flex-start;
+  }
+  .navbar__brand {
+    margin-left: 0;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .navbar__links {
+    width: 100%;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  .navbar__links a {
+    font-size: 14px;
+  }
+  .navbar__lang {
+    margin-right: 0;
+    margin-top: 10px;
+  }
+  .navbar__auth {
+    border-left: none;
+    padding-left: 0;
+    margin-left: 0;
+    margin-top: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  .navbar__register {
+    padding: 4px 6px;
+  }
+}
+@media (max-width: 480px) {
+  .navbar__brand {
+    font-size: 18px;
+  }
+  .navbar__links {
+    gap: 15px;
+  }
+  .navbar__links a {
+    font-size: 13px;
+  }
+  .navbar__auth {
+    font-size: 14px;
+  }
+  .navbar__register {
+    font-size: 14px;
+  }
+}
