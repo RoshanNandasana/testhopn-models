@@ -40,12 +40,12 @@ const Footer = () => (
           <ul>
             <li><a href="mailto:support@hopn.su">support@hopn.su</a></li>
             <li>
-            <div class="navbar__icons">
-            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+            <div className="navbar__icons">
+            <a href="#" title="Facebook" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
+            <a href="#" title="Instagram" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
+            <a href="#" title="YouTube" aria-label="YouTube"><i className="fab fa-youtube"></i></a>
+            <a href="#" title="LinkedIn" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
+          </div>
             </li>
           </ul>
         </div>

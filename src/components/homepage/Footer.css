@@ -46,22 +46,21 @@
   gap: 1px;
 }
 
-/* Language items color and hover for individual language */
 .footer__lang > * {
   color: #d4d1c9;
   cursor: pointer;
   transition: color 0.2s ease;
   text-decoration: none;
 }
-
 .footer__lang > *:hover {
   color: #c3977e;
 }
 
 .footer__links {
   padding-left: 0;
+  margin-left: 100px;
   display: flex;
-  gap: 56px;
+  gap: 200px;
   flex: 3.5;
   flex-wrap: wrap;
   font-weight: 300;
@@ -108,24 +107,40 @@
 }
 
 .footer__icons {
+  display: flex;
+  gap: 14px;
   margin-top: 12px;
+  align-items: center;
 }
 
-.footer__icons a {
+.footer__icons a,
+.navbar__icons a {
   color: #d4d1c9;
-  margin-right: 14px;
   font-size: 19px;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: color 0.2s;
-  vertical-align: middle;
+  margin-right: 3;
+  text-decoration: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
 }
 
-.footer__icons a:last-child {
-  margin-right: 0;
-}
-
-.footer__icons a:hover {
+.footer__icons a:hover,
+.navbar__icons a:hover {
   color: #c3977e;
+  background: rgba(255,255,255,0.06);
+}
+
+.navbar__icons {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: 4px;
 }
 
 .footer__bottom {
@@ -164,27 +179,15 @@
 }
 
 @media (max-width: 1200px) {
-  .footer__content {
-    gap: 38px;
-  }
-  .footer__links {
-    gap: 32px;
-  }
-  .footer__col {
-    min-width: 110px;
-  }
+  .footer__content { gap: 38px; }
+  .footer__links { gap: 32px; }
+  .footer__col { min-width: 110px; }
 }
 
 @media (max-width: 950px) {
-  .footer__content {
-    gap: 26px;
-  }
-  .footer__links {
-    gap: 16px;
-  }
-  .footer__col {
-    min-width: 100px;
-  }
+  .footer__content { gap: 26px; }
+  .footer__links { gap: 16px; }
+  .footer__col { min-width: 100px; }
 }
 
 @media (max-width: 700px) {
@@ -201,6 +204,7 @@
     justify-content: center;
     gap: 10px;
     width: 100%;
+    margin-left: 0;
   }
   .footer__col {
     min-width: 90px;
@@ -221,6 +225,7 @@
     width: 100%;
     justify-content: center;
   }
+  .footer__icons { justify-content: center; }
 }
 
 @media (max-width: 480px) {
@@ -253,11 +258,15 @@
   .footer__links a {
     font-size: 13px;
   }
-  .footer__icons a {
-    font-size: 15px;
-    width: 22px;
-    height: 22px;
-    margin-right: 7px;
+  .footer__icons,
+  .navbar__icons {
+    gap: 8px;
+  }
+  .footer__icons a,
+  .navbar__icons a {
+    font-size: 16px;
+    width: 26px;
+    height: 26px;
   }
   .footer__bottom {
     font-size: 0.85rem;
