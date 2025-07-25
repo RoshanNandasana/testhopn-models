@@ -30,7 +30,7 @@ const HeroSection = () => (
         <p>
           Find modeling work that fits your style and experience. 
           Let our platform connect you with trusted clients and real opportunities.
-          join us for growth
+          Join us for your growth
         </p>
         <button>View Models</button>
       </div>

@@ -15,7 +15,7 @@ const Navbar = () => (
       <select className="navbar__lang">
         <option>English</option>
         <option>Deutsch</option>
-        <option>عربي</option>
+        <option>العربية</option>
       </select>
       <a href="/login" className="navbar__auth">Login</a>
       <a href="/register" className="navbar__register">Register</a>

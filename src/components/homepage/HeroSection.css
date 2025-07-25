@@ -3,18 +3,22 @@
   gap: 32px;
   padding: 48px 12% 24px 10%;
   justify-content: center;
-  flex-wrap: wrap;
-  transition: padding 0.4s ease;
+  flex-wrap: nowrap;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 .hero-card {
   position: relative;
-  width: 570px;
-  max-width: 100%;
+  flex: 0 0 48%;
+  max-width: 48%;
+  min-width: 320px;
   height: 610px;
-  border-radius: 6px;
+  border-radius: 1px;
   background: #222;
   overflow: hidden;
   transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  box-sizing: border-box;
 }
 .hero-card:hover {
   transform: scale(1.03);
@@ -41,7 +45,7 @@
 }
 .hero-overlay h3 {
   font-size: 24px;
-  margin-bottom: 12px;
+  margin-bottom: 0px;
   font-weight: 600;
   letter-spacing: 0.03em;
 }
@@ -66,45 +70,40 @@
 .hero-overlay button:hover {
   background: #d19b7f;
 }
-@media (min-width: 1280px) {
+@media (max-width: 1279px) and (min-width: 769px) {
   .hero-section {
-    flex-wrap: nowrap;
-    justify-content: center;
-    overflow-x: hidden;
+    gap: 24px;
+    padding: 40px 6% 24px 6%;
   }
   .hero-card {
     flex: 0 0 48%;
     max-width: 48%;
-    height: 610px;
-    min-width: unset;
+    min-width: 260px;
+    height: 540px;
   }
 }
-@media (max-width: 1279px) and (min-width: 769px) {
+@media (max-width: 1024px) and (min-width: 769px) {
   .hero-section {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding: 40px 8% 24px 8%;
-    gap: 24px;
+    gap: 18px;
+    padding: 40px 3% 24px 3%;
   }
   .hero-card {
-    flex: 0 0 calc(50% - 12px);
-    max-width: calc(50% - 12px);
-    height: 540px;
-    min-width: 300px;
+    min-width: 220px;
+    height: 520px;
   }
 }
 @media (max-width: 768px) {
   .hero-section {
-    padding: 32px 5% 24px 5%;
-    gap: 20px;
-    justify-content: center;
     flex-wrap: wrap;
+    gap: 20px;
+    padding: 32px 5% 24px 5%;
+    justify-content: center;
   }
   .hero-card {
     width: 100%;
-    height: 480px;
     max-width: 100%;
-    min-width: auto;
+    min-width: 0;
+    height: 420px;
   }
   .hero-overlay h3 {
     font-size: 20px;
@@ -121,11 +120,11 @@
 }
 @media (max-width: 480px) {
   .hero-section {
-    padding: 24px 3% 16px 3%;
-    gap: 16px;
+    gap: 14px;
+    padding: 20px 2vw 12px 2vw;
   }
   .hero-card {
-    height: 400px;
+    height: 320px;
   }
   .hero-overlay h3 {
     font-size: 18px;
@@ -136,9 +135,9 @@
     margin-bottom: 16px;
   }
   .hero-overlay button {
-    width: 140px;
-    height: 40px;
+    width: 120px;
+    height: 36px;
     font-size: 0.8125rem;
-    padding: 9px 20px;
+    padding: 8px 14px;
   }
 }

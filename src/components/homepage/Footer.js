@@ -10,7 +10,7 @@ const Footer = () => (
         <div className="footer__lang">
           <span>English</span> &nbsp;
           <span>Deutsch</span> &nbsp;
-          <span>عربي</span>
+          <span>العربية</span>
         </div>
       </div>
 

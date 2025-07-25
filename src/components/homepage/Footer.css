@@ -4,22 +4,23 @@
   padding: 50px 1% 24px 1%;
   margin-top: 60px;
   font-size: 15px;
-  transition: background 0.4s ease;
-  position: relative;
   width: 100%;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
+
 .footer__content {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 100px;
+  gap: 64px;
   flex-wrap: wrap;
-  padding-left: 30px;
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
+
 .footer__brand {
   font-family: 'Italiana';
   font-style: normal;
@@ -28,35 +29,52 @@
   margin-top: 18px;
   font-size: 24px;
 }
+
 .footer__brand-title {
   font-size: 28px;
-  font-weight: 400;
   margin-bottom: 18px;
   display: block;
   letter-spacing: 0.03em;
 }
+
 .footer__lang {
-  font-family: Inter;
+  font-family: 'Inter', sans-serif;
   margin-top: 35px;
   font-size: 16px;
-  color: #bca892;
   display: flex;
   flex-direction: column;
-  gap: 1px; 
+  gap: 1px;
 }
+
+/* Language items color and hover for individual language */
+.footer__lang > * {
+  color: #d4d1c9;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.footer__lang > *:hover {
+  color: #c3977e;
+}
+
 .footer__links {
-  padding-left: 20px;
+  padding-left: 0;
   display: flex;
-  gap: 240px;
+  gap: 56px;
   flex: 3.5;
   flex-wrap: wrap;
   font-weight: 300;
-  font-style: light;
+  min-width: 0;
+  box-sizing: border-box;
 }
+
 .footer__col {
   min-width: 130px;
   margin-bottom: 14px;
+  word-break: break-word;
 }
+
 .footer__links h4 {
   font-size: 18px;
   color: #d0c4b3;
@@ -64,14 +82,16 @@
   font-weight: 500;
   letter-spacing: 0.02em;
 }
+
 .footer__links ul {
   list-style: none;
-  font-weight: 300;
   font-size: 16px;
   padding: 0;
   margin: 20px 0 10px 0;
 }
+
 .footer__links a {
+  font-family: 'Inter', sans-serif;
   color: #d4d1c9;
   text-decoration: none;
   margin-bottom: 6px;
@@ -80,14 +100,17 @@
   transition: color 0.2s;
   display: block;
   line-height: 2;
+  word-break: break-word;
 }
+
 .footer__links a:hover {
   color: #c3977e;
-  text-decoration: none;
 }
+
 .footer__icons {
   margin-top: 12px;
 }
+
 .footer__icons a {
   color: #d4d1c9;
   margin-right: 14px;
@@ -96,12 +119,15 @@
   transition: color 0.2s;
   vertical-align: middle;
 }
+
 .footer__icons a:last-child {
   margin-right: 0;
 }
+
 .footer__icons a:hover {
   color: #c3977e;
 }
+
 .footer__bottom {
   display: flex;
   justify-content: space-between;
@@ -117,10 +143,14 @@
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
+
 .footer__copyright {
   font-size: 0.98em;
 }
+
 .footer__bottom a {
   color: #a69786;
   margin-left: 10px;
@@ -128,129 +158,109 @@
   transition: color 0.18s;
   font-size: 0.98em;
 }
+
 .footer__bottom a:hover {
   text-decoration: underline;
 }
 
-.navbar__icons {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-left: 0px; 
-}
-.navbar__icons a {
-  color: #fff;               
-  font-size: 1rem;          
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;                 
-  height: 28px;               
-  border-radius: 50%;         
-  background: transparent;   
-  transition: background 0.2s, color 0.2s;
-  text-decoration: none;
-}
-.navbar__icons a:hover {
-  background: #c3977e;        
-  color: #fff;                
-}
-.navbar__icons i {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .footer__content {
-      gap: 50px;
-      padding-left: 15px;
+    gap: 38px;
   }
   .footer__links {
-      gap: 120px;
+    gap: 32px;
+  }
+  .footer__col {
+    min-width: 110px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 950px) {
   .footer__content {
-      flex-direction: column;
-      gap: 40px;
-      padding-left: 10px;
+    gap: 26px;
+  }
+  .footer__links {
+    gap: 16px;
+  }
+  .footer__col {
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 700px) {
+  .footer__content {
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
   }
   .footer__brand {
-      margin-top: 12px;
-      text-align: center;
+    margin-top: 12px;
+    text-align: center;
   }
   .footer__links {
-      padding-left: 0;
-      gap: 40px;
-      justify-content: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
   }
-  .footer__links > div {
-      min-width: 120px;
+  .footer__col {
+    min-width: 90px;
+    margin-bottom: 8px;
+    text-align: center;
   }
   .footer__bottom {
-      flex-direction: column;
-      gap: 10px;
-      text-align: center;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
   }
   .footer__bottom a {
-      margin-left: 0;
+    margin-left: 0;
   }
   .footer__lang {
-      margin-top: 20px;
-      align-items: center;
+    margin-top: 15px;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
   }
 }
 
 @media (max-width: 480px) {
   .footer {
-      padding: 30px 5% 20px 5%;
-      font-size: 14px;
+    padding: 22px 2vw 12px 2vw;
+    font-size: 14px;
   }
   .footer__brand {
-      font-size: 22px;
-      flex: unset;
-      min-width: auto;
+    font-size: 20px;
+    min-width: auto;
   }
   .footer__brand-title {
-      font-size: 24px;
+    font-size: 22px;
   }
   .footer__links {
-      gap: 20px;
+    gap: 4px;
+    width: 100%;
+  }
+  .footer__col {
+    min-width: 70px;
+    font-size: 13px;
+    margin-bottom: 4px;
   }
   .footer__links h4 {
-      font-size: 16px;
+    font-size: 15px;
   }
   .footer__links ul {
-      font-size: 14px;
+    font-size: 13px;
   }
   .footer__links a {
-      font-size: 14px;
+    font-size: 13px;
   }
   .footer__icons a {
-      font-size: 16px;
-      width: 24px;
-      height: 24px;
-      margin-right: 10px;
+    font-size: 15px;
+    width: 22px;
+    height: 22px;
+    margin-right: 7px;
   }
   .footer__bottom {
-      font-size: 0.85rem;
-  }
-  .navbar__icons {
-      gap: 8px;
-  }
-  .navbar__icons a {
-      width: 24px;
-      height: 24px;
-      font-size: 0.9rem;
-  }
-}
-
-@media (hover: none) and (pointer: coarse) {
-  .navbar__icons a {
-      width: 36px;
-      height: 36px;
+    font-size: 0.85rem;
+    padding-top: 10px;
   }
 }

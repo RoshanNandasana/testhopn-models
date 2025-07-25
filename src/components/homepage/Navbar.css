@@ -7,7 +7,8 @@
   padding: 0 32px;
   height: 73px;
   transition: background 0.4s ease;
-  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
 }
 .navbar__brand {
   font-family: 'Italiana';
@@ -20,27 +21,24 @@
 .navbar__links {
   color: #bca892;
   font-size: 16px;
-  font-weight: 300;    
+  font-weight: 300;
   display: flex;
   align-items: center;
   gap: 40px;
-  flex-wrap: wrap;
-  flex-grow: 1;
-  justify-content: end;
-
+  justify-content: flex-end;
 }
 .navbar__links a {
   color: #fff;
-  font-weight: 100; 
+  font-weight: 100;
   text-decoration: none;
   font-size: 16px;
   transition: color 0.3s ease;
 }
 .navbar__links a:hover {
-  text-decoration: none;
   color: #c3977e;
 }
 .navbar__lang {
+  font-family: 'Inter',sans-serif;
   background: #252321;
   color: #fff;
   border: none;
@@ -51,27 +49,22 @@
 }
 .navbar__auth {
   border-left: 1px solid #444;
-  margin-left: 2px;     
-  padding-left: 6px;     
+  margin-left: 2px;
+  padding-left: 6px;
   color: #fff;
   text-decoration: none;
-  padding-right: 0px;  
-  padding-top: 2px;     
-  padding-bottom: 2px;
   font-weight: 500;
-  transition: background 0.2s;
 }
-.navbar__register {  
+.navbar__register {
   color: #fff;
   text-decoration: none;
   padding: 2px 1px;
   font-weight: 500;
-  transition: background 0.2s;
 }
-
 @media (max-width: 1024px) {
   .navbar {
     padding: 0 20px;
+    height: 60px;
   }
   .navbar__brand {
     margin-left: 20px;
@@ -79,8 +72,6 @@
   }
   .navbar__links {
     gap: 30px;
-    justify-content: center;
-    flex-wrap: wrap;
   }
   .navbar__links a {
     font-size: 15px;
@@ -100,8 +91,9 @@
   }
   .navbar__links {
     width: 100%;
-    justify-content: space-around;
     gap: 20px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
   }
   .navbar__links a {
     font-size: 14px;
@@ -115,14 +107,15 @@
     padding-left: 0;
     margin-left: 0;
     margin-top: 10px;
-    padding-top: 4px;
-    padding-bottom: 4px;
   }
   .navbar__register {
     padding: 4px 6px;
   }
 }
 @media (max-width: 480px) {
+  .navbar {
+    padding: 7px 5vw;
+  }
   .navbar__brand {
     font-size: 18px;
   }
@@ -132,10 +125,7 @@
   .navbar__links a {
     font-size: 13px;
   }
-  .navbar__auth {
-    font-size: 14px;
-  }
-  .navbar__register {
+  .navbar__auth, .navbar__register {
     font-size: 14px;
   }
 }
