@@ -1,5 +1,6 @@
 import React from "react";
 import "./HeroSection.css";
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => (
   <section className="hero-section">
@@ -15,7 +16,9 @@ const HeroSection = () => (
           Access a curated network of models, talents, and influencers for promotional work, 
           expert spaces, photoshoots, ads, and digital content creation.
         </p>
-        <button>View Models</button>
+        <Link to="/gallery">
+        <button>View Models</button> {/* button in Link */}
+        </Link>
       </div>
     </div>
 

@@ -1,0 +1,185 @@
+.gallery-page {
+    background: #fff;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  .gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .gallery-container h2 {
+    font-size: 24px;
+    font-weight: 300;
+    font-style: normal;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .filter-group label {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  
+  .filter-group select {
+    padding: 8px;
+    width:197px;
+    height:48px;
+    font-size: 16px;
+    font-weight: 300;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #C28B6B;
+    color:#fff;
+    cursor: pointer;
+  }
+  
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .model-card {
+    background: #fff;
+    overflow: hidden;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+    text-align: start;
+  }
+  
+  .model-card img {
+    width: 100%;
+    height: 416px;
+    object-fit: cover;
+  }
+  
+  .model-card h3 {
+    font-weight: 400;
+    font-size: 24px;
+    font-style: normal;
+    margin: 10px 0;
+    color: #333;
+  }
+  
+  .model-card p {
+    font-weight: 300;
+    font-size: 18px;
+    font-style: light;
+    color: #666;
+    margin-top:0px;
+    margin-bottom: 10px;
+  }
+  
+  /* Style the select dropdown to match the screenshot */
+  .filter-group select:focus {
+    outline: none;
+    border-color: #b0a090;
+    box-shadow: 0 0 5px rgba(176, 160, 144, 0.5);
+  }
+  
+  /* Tooltip-like price filter */
+  .filter-group select[aria-label="Price"] {
+    position: relative;
+  }
+  
+  .filter-group select[aria-label="Price"]:focus + .price-tooltip {
+    display: block;
+  }
+  
+  .price-tooltip {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    top: 100%;
+    left: 0;
+    width: 150px;
+  }
+  
+  .price-tooltip label {
+    display: block;
+    margin: 5px 0;
+  }
+  
+  .price-tooltip input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 416px;
+    overflow: hidden;
+  }
+  
+
+  .image-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 2;
+  }
+  
+  .image-wrapper:hover::after {
+    opacity: 0.5;
+  }
+
+  .hover-details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    color: rgba(255, 255, 255, 9); 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;    
+    text-align: left;           
+    padding-left: 60px;          
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 3;
+    pointer-events: none;
+  }
+  
+  .image-wrapper:hover .hover-details {
+    opacity: 1;
+  }
+  
+  .hover-details p {
+    font-family: 'Inter';
+    margin: 2px 0;
+    font-size: 16px;
+    font-weight: 300;
+    font-style: 'light';
+    line-height: 25px;
+    color: rgba(255, 255, 255, 0.70)
+  }
+
+  

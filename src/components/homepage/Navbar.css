@@ -37,16 +37,56 @@
 .navbar__links a:hover {
   color: #c3977e;
 }
+
 .navbar__lang {
+  padding-top: 2px;
   font-family: 'Inter',sans-serif;
   background: #252321;
   color: #fff;
   border: none;
-  font-size: 16px;
+  font-size: 14px;
   margin-right: 12px;
   outline: none;
   cursor: pointer;
 }
+
+.selected {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  color: white;
+  position: relative;
+}
+
+.dropdown-arrow {
+  display: inline-block;
+  width: 15px;
+  height: 7.5px;
+  background-image: url("data:image/svg+xml,%3Csvg width='15' height='8' viewBox='0 0 15 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L7.5 7L14 1' stroke='white' stroke-width='1'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.options {
+  display: none;
+  position: absolute;
+  z-index: 9999;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100px;
+  background: #2A2828;
+  border-radius: 1px;
+}
+.options li {
+  padding: 5px;
+  color: #fff;
+}
+.options li:hover {
+  color: #c3977e;
+}
+
 .navbar__auth {
   border-left: 1px solid #444;
   margin-left: 2px;
