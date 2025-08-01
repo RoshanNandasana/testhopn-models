@@ -1,14 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Navbar.css";
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  const [showOptions, setShowOptions] = useState(false);
-  const [selectedLang, setSelectedLang] = useState("English");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showLangOptions, setShowLangOptions] = useState(false);
+  const menuRef = useRef(null);
   const langRef = useRef(null);
 
   const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setIsMenuOpen(false);
+    }
     if (langRef.current && !langRef.current.contains(event.target)) {
-      setShowOptions(false);
+      setShowLangOptions(false);
     }
   };
 
@@ -17,11 +22,17 @@ const Navbar = () => {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-  const handleLangSelect = (lang, event) => {
-    event.stopPropagation(); // Prevents toggle from parent
-    setSelectedLang(lang);
-    setShowOptions(false);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
+
+  const handleLangSelect = (lang, event) => {
+    event.stopPropagation();
+    setSelectedLang(lang);
+    setShowLangOptions(false);
+  };
+
+  const [selectedLang, setSelectedLang] = useState("English");
 
   return (
     <header className="navbar">
@@ -29,31 +40,33 @@ const Navbar = () => {
         <div>HOPn</div>
         <div>Models</div>
       </div>
-      <nav className="navbar__links">
-        <a href="/">Home</a>
-        <a href="/models">Models</a>
-        <a href="/contact">Contact</a>
-        <a href="/">About</a>
-
+      <div className="navbar__hamburger" onClick={toggleMenu}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <nav className={`navbar__links ${isMenuOpen ? "open" : ""}`} ref={menuRef}>
+        <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+        <Link to="/gallery" onClick={() => setIsMenuOpen(false)}>Models</Link>
+        <Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+        <Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link>
         <div
           className="navbar__lang"
-          onClick={() => setShowOptions((prev) => !prev)}
+          onClick={() => setShowLangOptions((prev) => !prev)}
           ref={langRef}
         >
           <div className="selected">
             {selectedLang}
             <span className="dropdown-arrow"></span>
           </div>
-
-          <ul className="options" style={{ display: showOptions ? "block" : "none" }}>
+          <ul className="options" style={{ display: showLangOptions ? "block" : "none" }}>
             <li onClick={(e) => handleLangSelect("English", e)}>English</li>
             <li onClick={(e) => handleLangSelect("Deutsch", e)}>Deutsch</li>
             <li onClick={(e) => handleLangSelect("العربية", e)}>العربية</li>
           </ul>
         </div>
-
-        <a href="/login" className="navbar__auth">Login</a>
-        <a href="/register" className="navbar__register">Register</a>
+        <Link to="/login" className="navbar__auth" onClick={() => setIsMenuOpen(false)}>Login</Link>
+        <Link to="/register" className="navbar__register" onClick={() => setIsMenuOpen(false)}>Register</Link>
       </nav>
     </header>
   );

@@ -13,11 +13,11 @@ const HeroSection = () => (
       <div className="hero-overlay">
         <h3>Source Verified Talent</h3>
         <p>
-          Access a curated network of models, talents, and influencers for promotional work, 
+          Access a curated network of models, talents, and influencers for promotional work,
           expert spaces, photoshoots, ads, and digital content creation.
         </p>
         <Link to="/gallery">
-        <button>View Models</button> {/* button in Link */}
+          <button>View Models</button>
         </Link>
       </div>
     </div>
@@ -31,9 +31,9 @@ const HeroSection = () => (
       <div className="hero-overlay">
         <h3>Explore Modeling Opportunities</h3>
         <p>
-          Find modeling work that fits your style and experience. 
+          Find modeling work that fits your style and experience.
           Let our platform connect you with trusted clients and real opportunities.
-          Join us for your growth
+          Join us for your growth.
         </p>
         <button>View Models</button>
       </div>

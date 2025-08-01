@@ -4,7 +4,7 @@ import './view.css';
 const View = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filters, setFilters] = useState({
-    dateTime: '',
+    dateTime: { start: '', end: '' }, // Updated to handle start and end times
     city: '',
     country: '',
     price: '',
@@ -15,6 +15,7 @@ const View = () => {
     language: '',
     sortBy: ''
   });
+  const [isDateTimeOpen, setIsDateTimeOpen] = useState(false); // Toggle for date/time section
 
   const models = [
     {
@@ -27,7 +28,7 @@ const View = () => {
       price: '100-200€',
       image: 'images/gallerymodel1.jpg',
       details: [
-        "Height 5'11.5\" / 1.82 M", "Bust 30.5\" / 76 CM", "Waist 25.5\" / 64 CM", 
+        "Height 5'11.5\" / 1.82 M", "Bust 30.5\" / 76 CM", "Waist 25.5\" / 64 CM",
         "Hips 35\" / 88 CM", "Dress 2 US / 34 EU", "Bra 32B / 70C"
       ],
       rating: 4,
@@ -44,7 +45,7 @@ const View = () => {
       price: '200-500€',
       image: 'images/gallerymodel2.jpg',
       details: [
-        "Height 5'10\" / 1.78 M", "Bust 31\" / 79 CM", "Waist 25\" / 63.5 CM", 
+        "Height 5'10\" / 1.78 M", "Bust 31\" / 79 CM", "Waist 25\" / 63.5 CM",
         "Hips 36\" / 91 CM", "Dress 4 US / 36 EU", "Bra 32C / 70C"
       ],
       rating: 5,
@@ -61,7 +62,7 @@ const View = () => {
       price: '100-200€',
       image: 'images/gallerymodel3.jpg',
       details: [
-        "Height 5'11.5\" / 1.82 M", "Bust 30.5\" / 76 CM", "Waist 25.5\" / 64 CM", 
+        "Height 5'11.5\" / 1.82 M", "Bust 30.5\" / 76 CM", "Waist 25.5\" / 64 CM",
         "Hips 35\" / 88 CM", "Dress 2 US / 34 EU", "Bra 32B / 70C"
       ],
       rating: 3,
@@ -78,7 +79,7 @@ const View = () => {
       price: '200-500€',
       image: 'images/gallerymodel4.jpg',
       details: [
-        "Height 5'9\" / 1.75 M", "Bust 32\" / 81 CM", "Waist 24.5\" / 62 CM", 
+        "Height 5'9\" / 1.75 M", "Bust 32\" / 81 CM", "Waist 24.5\" / 62 CM",
         "Hips 34\" / 86 CM", "Dress 4 US / 36 EU", "Bra 32C / 70D"
       ],
       rating: 4,
@@ -95,7 +96,7 @@ const View = () => {
       price: '100-200€',
       image: 'images/gallerymodel5.jpg',
       details: [
-        "Height 5'10\" / 1.78 M", "Bust 31.5\" / 80 CM", "Waist 25\" / 63.5 CM", 
+        "Height 5'10\" / 1.78 M", "Bust 31.5\" / 80 CM", "Waist 25\" / 63.5 CM",
         "Hips 36\" / 91 CM", "Dress 4 US / 36 EU", "Bra 34A / 75B"
       ],
       rating: 5,
@@ -112,7 +113,7 @@ const View = () => {
       price: '200-500€',
       image: 'images/gallerymodel6.jpg',
       details: [
-        "Height 6'0\" / 1.83 M", "Bust 33\" / 84 CM", "Waist 26\" / 66 CM", 
+        "Height 6'0\" / 1.83 M", "Bust 33\" / 84 CM", "Waist 26\" / 66 CM",
         "Hips 37\" / 94 CM", "Dress 6 US / 38 EU", "Bra 34B / 75C"
       ],
       rating: 4,
@@ -129,7 +130,7 @@ const View = () => {
       price: '100-200€',
       image: 'images/gallerymodel7.jpg',
       details: [
-        "Height 5'8.5\" / 1.74 M", "Bust 30\" / 76 CM", "Waist 24\" / 61 CM", 
+        "Height 5'8.5\" / 1.74 M", "Bust 30\" / 76 CM", "Waist 24\" / 61 CM",
         "Hips 34\" / 86 CM", "Dress 2 US / 34 EU", "Bra 32A / 70A"
       ],
       rating: 3,
@@ -146,7 +147,7 @@ const View = () => {
       price: '+500€',
       image: 'images/gallerymodel8.jpg',
       details: [
-        "Height 6'1\" / 1.85 M", "Chest 39\" / 99 CM", "Waist 31\" / 79 CM", 
+        "Height 6'1\" / 1.85 M", "Chest 39\" / 99 CM", "Waist 31\" / 79 CM",
         "Hips 37\" / 94 CM", "Suit 38R / 48 EU", "Shoe 11 US / 44 EU"
       ],
       rating: 5,
@@ -164,7 +165,7 @@ const View = () => {
 
   const clearFilters = () => {
     setFilters({
-      dateTime: '',
+      dateTime: { start: '', end: '' },
       city: '',
       country: '',
       price: '',
@@ -180,6 +181,7 @@ const View = () => {
   // Filter and sort models
   const filteredModels = models
     .filter((model) => {
+      // Add dateTime filter logic if needed (e.g., compare model availability with filters.dateTime)
       return (
         (!filters.city || model.city.toLowerCase() === filters.city.toLowerCase()) &&
         (!filters.country || model.country.toLowerCase() === filters.country.toLowerCase()) &&
@@ -211,7 +213,7 @@ const View = () => {
   return (
     <div className="gallery-page">
       {/* Backdrop */}
-      {isFilterOpen && <div className="backdrop show" onClick={() => setIsFilterOpen(false)}></div>}
+      {isFilterOpen && <div className="filter-overlay" onClick={() => setIsFilterOpen(false)}></div>}
 
       {/* Filter Panel */}
       <div className={`filter-panel ${isFilterOpen ? 'open' : ''}`}>
@@ -221,15 +223,35 @@ const View = () => {
         </div>
 
         <div className="filter-content">
-          <div className="filter-group">
-            <label>Date & Time Availability</label>
-            <select value={filters.dateTime} onChange={(e) => handleFilterChange('dateTime', e.target.value)}>
-              <option value="">Select Date</option>
-              <option value="today">Today</option>
-              <option value="tomorrow">Tomorrow</option>
-              <option value="this-week">This Week</option>
-              <option value="next-week">Next Week</option>
-            </select>
+          <div className={`filter-group ${isDateTimeOpen ? 'active' : ''}`}>
+            <div className="filter-group-header" onClick={() => setIsDateTimeOpen(!isDateTimeOpen)}>
+              <label>Date & Time Availability <span className="think-icon">T</span></label>
+              <span className="filter-arrow">▶</span>
+            </div>
+            <div className="filter-group-content">
+              <h4>Data & Time Availability 2025</h4>
+              <div className="date-time-inputs">
+                <div>
+                  <label>Start Date & Time</label>
+                  <input
+                    type="datetime-local"
+                    value={filters.dateTime.start || ''}
+                    onChange={(e) => handleFilterChange('dateTime', { ...filters.dateTime, start: e.target.value })}
+                    min="2025-08-01T12:00" // Set min to current date (adjusted to IST 05:30 PM)
+                  />
+                </div>
+                <div>
+                  <label>End Date & Time</label>
+                  <input
+                    type="datetime-local"
+                    value={filters.dateTime.end || ''}
+                    onChange={(e) => handleFilterChange('dateTime', { ...filters.dateTime, end: e.target.value })}
+                    min="2025-08-01T12:00" // Set min to current date (adjusted to IST 05:30 PM)
+                  />
+                </div>
+              </div>
+              <button className="check-btn" onClick={() => console.log('Check Availability', filters.dateTime)}>Check Availability</button>
+            </div>
           </div>
 
           <div className="filter-group">
@@ -287,7 +309,7 @@ const View = () => {
           </div>
 
           <div className="filter-group">
-            <label>Rating</label>
+            <label>Rating <span className="think-icon">T</span></label>
             <select value={filters.rating} onChange={(e) => handleFilterChange('rating', e.target.value)}>
               <option value="">Select Rating</option>
               <option value="5">5 Stars</option>
@@ -309,7 +331,7 @@ const View = () => {
           </div>
 
           <div className="filter-group">
-            <label>Sort by</label>
+            <label>Sort by <span className="think-icon">R</span></label>
             <select value={filters.sortBy} onChange={(e) => handleFilterChange('sortBy', e.target.value)}>
               <option value="">Default</option>
               <option value="name">Name</option>
@@ -321,7 +343,7 @@ const View = () => {
 
           <div className="filter-actions">
             <button className="clear-btn" onClick={clearFilters}>Clear All</button>
-            <button className="save-btn" onClick={() => setIsFilterOpen(false)}>Apply Filters</button>
+            <button className="save-btn" onClick={() => setIsFilterOpen(false)}>Save</button>
           </div>
         </div>
       </div>
