@@ -6,6 +6,8 @@ import HeroSection from "./components/homepage/HeroSection";
 import PlatformSection from "./components/homepage/PlatformSection";
 import Footer from "./components/homepage/Footer";
 import Gallery from './components/gallery/view';
+import Registermodel from "./components/registremodel/registermodel";
+import ModelProfile from "./components/gallery/ModelProfile";
 
 export default function App() {
   return (
@@ -20,6 +22,8 @@ export default function App() {
             </main>
           } />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/register" element={<Registermodel />} />
+          <Route path="/ModelProfile" element={<ModelProfile />} />
         </Routes>
         <Footer />
       </div>

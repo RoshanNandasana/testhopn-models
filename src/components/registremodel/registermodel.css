@@ -1,0 +1,314 @@
+body {
+  margin: 0;
+}
+
+.register-container {
+  max-width: 900px;
+  margin: 10px auto 0 auto;
+  background: #fff;
+  padding: 44px 40px 40px 40px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.register-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 300;
+  margin-bottom: 55px;
+  color: #00000099;
+  letter-spacing: 0.5px;
+}
+
+.section-title {
+  color: #c28b6bb2;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+
+.section-title .icon {
+  margin-right: 11px;
+  font-size: 23px;
+}
+
+.gender-options {
+  display: flex;
+  gap: 26px;
+  margin-bottom: 26px;
+  font-size: 16px;
+  align-items: center;
+}
+
+.gender-options label {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #00000099;
+  user-select: none;
+  display: flex;
+  align-items: center;
+}
+
+.gender-options input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Custom radio circle */
+.gender-options label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #c28b6bb2;
+  border-radius: 50%;
+  background: #fff;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+/* Checked (filled) circle */
+.gender-options input[type="radio"]:checked + span::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  background: #c28b6b;
+  border-radius: 50%;
+}
+
+/* Text next to radio */
+.gender-options label span {
+  margin-left: 10px;
+  font-weight: 400;
+  color: #00000099;
+}
+
+input[type="text"] {
+  display: block;
+  padding: 13px 0 13px 0;
+  margin-bottom: 20px;
+  border: none;
+  border: 1.5px solid #00000066;
+  font-size: 15px;
+  border-radius: 3px;
+  outline: none;
+  width: 100%;
+  background: transparent;
+  color: #00000099;
+  padding-left: 6px;
+
+  transition: border-color 0.22s, color 0.22s;
+}
+input[type="text"]::placeholder {
+  color: #00000099;
+  opacity: 1;
+  font-size: 15px;
+}
+
+input[type="text"]:hover,
+input[type="text"]:focus {
+  border: 1.7px solid #c28b6bb2;
+
+  background: #fff;
+}
+
+input[type="text"],
+input[type="email"] {
+  display: block;
+  padding: 13px 0 13px 6px;
+  margin-bottom: 20px;
+  border: 1.5px solid #00000066;
+  border-radius: 3px;
+  font-size: 15px;
+  outline: none;
+  width: 100%;
+  background: transparent;
+  color: #00000099;
+  transition: border-color 0.22s, color 0.22s;
+  font-weight: 400;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder {
+  color: #00000099;
+  opacity: 1;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+input[type="text"]:hover,
+input[type="text"]:focus,
+input[type="email"]:hover,
+input[type="email"]:focus {
+  border: 1.7px solid #c28b6bb2;
+  background: #fff;
+  color: #00000099;
+}
+
+.note {
+  font-size: 13px;
+  color: #00000099;
+  font-weight: 300px;
+  margin-bottom: 30px;
+  margin-top: -8px;
+}
+
+.next-btn {
+  background-color: #c28b6b;
+  color: white;
+  border: none;
+  padding: 13px 0;
+  width: 194px;
+  height: 48px;
+  cursor: pointer;
+  font-weight: 300;
+  font-size: 16px;
+  margin-top: 14px;
+  box-shadow: none;
+  transition: none;
+  margin-left: 0;
+  align-self: flex-end;
+}
+
+.next-btn:hover {
+  background-color: #c28b6bb2; /* No color change */
+}
+
+/* --- Date of Birth input row (flex horizontal) --- */
+.dob-row {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+.dob-row input[type="text"] {
+  flex: 1 1 0;
+  margin-bottom: 0; /* Inputs in DOB row have no extra margin */
+}
+
+/* --- Select fields for Location step --- */
+select {
+  display: block;
+  width: 100%;
+  padding: 13px 0 13px 6px;
+  margin-bottom: 20px;
+  border: 1.5px solid #00000066;
+  border-radius: 3px;
+  font-size: 15px;
+  background: transparent;
+  color: #00000099;
+  font-weight: 400;
+  outline: none;
+  transition: border-color 0.22s, color 0.22s;
+}
+select:focus,
+select:hover {
+  border: 1.7px solid #c28b6bb2;
+  background: #fff;
+  color: #00000099;
+}
+
+/* --- Checkbox for 'Available to Travel' --- */
+.travel-checkbox input[type="checkbox"] {
+  accent-color: #c28b6b;
+
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+}
+.travel-checkbox {
+  font-size: 15px;
+  cursor: pointer;
+
+  font-weight: 400;
+  margin-bottom: 26px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* --- Back Arrow Button --- */
+.back-arrow-btn {
+    position: absolute;
+    left: 32px; /* pad from container edge */
+    top: 38px;  /* just above the section content */
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    transition: opacity 0.2s;
+  }
+  
+  .back-arrow-btn svg {
+    display: inline-block;
+  }
+  
+  .back-arrow-btn .back-text {
+    color: #000000;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-top: 2px;
+  }
+  
+  .back-arrow-btn:active,
+  .back-arrow-btn:focus {
+    opacity: 0.7;
+  }
+  
+  /* Push container to relative to allow absolute arrow */
+  .register-container {
+    position: relative;
+  }
+  /* Responsive: adjust arrow on small screens */
+  @media (max-width: 640px) {
+    .back-arrow-btn {
+      left: 10px;
+      top: 24px;
+    }
+  }
+
+
+
+  
+  
+
+@media (max-width: 950px) {
+  .register-container {
+    max-width: 95vw;
+    padding: 36px 12px 32px 12px;
+    height: auto;
+  }
+  .next-btn {
+    margin-left: auto;
+    width: 100%;
+    max-width: 194px;
+  }
+}

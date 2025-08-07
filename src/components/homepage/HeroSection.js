@@ -35,7 +35,9 @@ const HeroSection = () => (
           Let our platform connect you with trusted clients and real opportunities.
           Join us for your growth.
         </p>
-        <button>View Models</button>
+        <Link to="/register">
+        <button>Become a Model</button>
+        </Link>
       </div>
     </div>
   </section>
