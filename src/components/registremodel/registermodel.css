@@ -1,18 +1,14 @@
 body {
   margin: 0;
 }
-
 .register-container {
   max-width: 900px;
   margin: 10px auto 0 auto;
   background: #fff;
   padding: 44px 40px 40px 40px;
-  height: 600px;
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
+  position: relative;
 }
-
 .register-title {
   text-align: center;
   font-size: 36px;
@@ -21,7 +17,6 @@ body {
   color: #00000099;
   letter-spacing: 0.5px;
 }
-
 .section-title {
   color: #c28b6bb2;
   font-size: 20px;
@@ -30,12 +25,10 @@ body {
   margin-bottom: 24px;
   font-weight: 400;
 }
-
 .section-title .icon {
   margin-right: 11px;
   font-size: 23px;
 }
-
 .gender-options {
   display: flex;
   gap: 26px;
@@ -43,7 +36,6 @@ body {
   font-size: 16px;
   align-items: center;
 }
-
 .gender-options label {
   position: relative;
   padding-left: 30px;
@@ -54,7 +46,6 @@ body {
   display: flex;
   align-items: center;
 }
-
 .gender-options input[type="radio"] {
   opacity: 0;
   position: absolute;
@@ -65,8 +56,6 @@ body {
   margin: 0;
   cursor: pointer;
 }
-
-/* Custom radio circle */
 .gender-options label::before {
   content: "";
   position: absolute;
@@ -80,8 +69,6 @@ body {
   box-sizing: border-box;
   transition: border-color 0.2s;
 }
-
-/* Checked (filled) circle */
 .gender-options input[type="radio"]:checked + span::after {
   content: "";
   position: absolute;
@@ -92,44 +79,12 @@ body {
   background: #c28b6b;
   border-radius: 50%;
 }
-
-/* Text next to radio */
 .gender-options label span {
   margin-left: 10px;
   font-weight: 400;
   color: #00000099;
 }
-
-input[type="text"] {
-  display: block;
-  padding: 13px 0 13px 0;
-  margin-bottom: 20px;
-  border: none;
-  border: 1.5px solid #00000066;
-  font-size: 15px;
-  border-radius: 3px;
-  outline: none;
-  width: 100%;
-  background: transparent;
-  color: #00000099;
-  padding-left: 6px;
-
-  transition: border-color 0.22s, color 0.22s;
-}
-input[type="text"]::placeholder {
-  color: #00000099;
-  opacity: 1;
-  font-size: 15px;
-}
-
-input[type="text"]:hover,
-input[type="text"]:focus {
-  border: 1.7px solid #c28b6bb2;
-
-  background: #fff;
-}
-
-input[type="text"],
+input[type="text"]:not([type="file"]),
 input[type="email"] {
   display: block;
   padding: 13px 0 13px 6px;
@@ -141,10 +96,12 @@ input[type="email"] {
   width: 100%;
   background: transparent;
   color: #00000099;
-  transition: border-color 0.22s, color 0.22s;
   font-weight: 400;
+  transition: border-color 0.22s, color 0.22s;
 }
-
+input[type="file"] {
+  margin-bottom: 18px;
+}
 input[type="text"]::placeholder,
 input[type="email"]::placeholder {
   color: #00000099;
@@ -152,7 +109,6 @@ input[type="email"]::placeholder {
   font-size: 15px;
   font-weight: 400;
 }
-
 input[type="text"]:hover,
 input[type="text"]:focus,
 input[type="email"]:hover,
@@ -161,7 +117,6 @@ input[type="email"]:focus {
   background: #fff;
   color: #00000099;
 }
-
 .note {
   font-size: 13px;
   color: #00000099;
@@ -169,7 +124,6 @@ input[type="email"]:focus {
   margin-bottom: 30px;
   margin-top: -8px;
 }
-
 .next-btn {
   background-color: #c28b6b;
   color: white;
@@ -186,12 +140,9 @@ input[type="email"]:focus {
   margin-left: 0;
   align-self: flex-end;
 }
-
 .next-btn:hover {
-  background-color: #c28b6bb2; /* No color change */
+  background-color: #c28b6bb2;
 }
-
-/* --- Date of Birth input row (flex horizontal) --- */
 .dob-row {
   display: flex;
   gap: 18px;
@@ -199,10 +150,8 @@ input[type="email"]:focus {
 }
 .dob-row input[type="text"] {
   flex: 1 1 0;
-  margin-bottom: 0; /* Inputs in DOB row have no extra margin */
+  margin-bottom: 0;
 }
-
-/* --- Select fields for Location step --- */
 select {
   display: block;
   width: 100%;
@@ -223,11 +172,8 @@ select:hover {
   background: #fff;
   color: #00000099;
 }
-
-/* --- Checkbox for 'Available to Travel' --- */
 .travel-checkbox input[type="checkbox"] {
   accent-color: #c28b6b;
-
   margin-right: 10px;
   width: 18px;
   height: 18px;
@@ -235,71 +181,260 @@ select:hover {
 .travel-checkbox {
   font-size: 15px;
   cursor: pointer;
-
   font-weight: 400;
   margin-bottom: 26px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
-
-.button-row {
+.modeltype-section {
+  margin-bottom: 32px;
+}
+.modeltype-label {
+  display: block;
+  font-weight: 500;
+  font-size: 15px;
+  color: #c28b6bb2;
+  margin-bottom: 12px;
+  letter-spacing: 0.06em;
+  padding-top: 2px;
+}
+.modeltype-container {
+  border: 1.2px solid #e8e2dec2;
+  border-radius: 8px;
+  background: #fff;
+  padding: 20px 18px 20px 18px;
+}
+.modeltype-main {
+  display: block;
+  margin-bottom: 22px;
+}
+.modeltype-checkbox {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  font-size: 15px;
+  color: #3a2612;
+  font-weight: 400;
+  margin-bottom: 7px;
+}
+.modeltype-checkbox input[type="checkbox"] {
+  accent-color: #c28b6b;
+  width: 18px;
+  height: 18px;
+  margin-right: 11px;
+  margin-top: 1px;
+  transition: box-shadow 0.18s;
+  box-shadow: 0 0 1px 0 #c28b6b33;
+}
+.modeltype-subgroup {
+  margin-left: 27px;
+  margin-top: 6px;
+  margin-bottom: 7px;
+}
+.modeltype-sub-checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 13.5px;
+  color: #684f32bb;
+  font-weight: 400;
+  margin-bottom: 7px;
+}
+.modeltype-sub-checkbox input[type="checkbox"] {
+  accent-color: #c28b6b;
+  width: 16px;
+  height: 16px;
+  margin-right: 9px;
+}
+@media (max-width: 640px) {
+  .modeltype-container {
+    padding: 13px 8px 13px 8px;
+  }
+  .modeltype-label {
+    font-size: 14px;
+  }
+  .modeltype-checkbox {
+    font-size: 13.7px;
+  }
+  .modeltype-sub-checkbox {
+    font-size: 12.3px;
+  }
+  .modeltype-subgroup {
+    margin-left: 16px;
+  }
+}
+.experience-row {
+  margin: 12px 0 26px 0;
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  font-size: 14.7px;
+  color: #c28b6bb2;
+}
+.experience-label {
+  color: #c28b6bb2;
+  font-weight: 500;
+  font-size: 15px;
+  margin-right: 12px;
+}
+.experience-radio {
+  color: #00000099;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  margin-right: 14px;
+}
+.experience-radio input[type="radio"] {
+  margin-right: 7px;
+  accent-color: #c28b6b;
+  width: 17px;
+  height: 17px;
+}
+.professional-row {
+  margin-bottom: 18px;
+}
+.professional-label {
+  display: block;
+  color: #c28b6bb2;
+  font-weight: 500;
+  font-size: 14.7px;
+  margin-bottom: 7px;
+  letter-spacing: 0.04em;
+}
+.professional-search {
+  border: 1.3px solid #e0d3c0;
+  border-radius: 4px;
+  background: #fff;
+  padding: 10px 7px;
+  color: #8a6c55;
+  width: 260px;
+  font-size: 14px;
+  font-weight: 400;
+  outline: none;
+  margin-right: 12px;
+}
+.showcase-btn {
+  background: #c28b6b;
+  color: #fff;
+  border: none;
+  padding: 9px 22px;
+  border-radius: 3px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 400;
+  transition: background 0.19s;
+}
+.showcase-btn:hover {
+  background: #c28b6b99;
+}
+.brand-search-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 12px;
+}
+.brand-tags {
+  display: flex;
+  gap: 8px;
+  margin-top: 0;
+}
+.brand-tag {
+  background: #c28b6b16;
+  color: #c28b6b;
+  border-radius: 16px;
+  padding: 5px 15px;
+  margin: 2px 0;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  display: inline-block;
+  cursor: pointer;
+  transition: background 0.18s, color 0.16s;
+}
+.brand-tag.selected {
+  background: #c28b6b;
+  color: #fff;
+}
+.style-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 7px;
+}
+.style-tag {
+  border: 1px solid #c28b6b77;
+  color: #c28b6b;
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 13.2px;
+  font-weight: 400;
+  background: #fff;
+  cursor: pointer;
+  margin-bottom: 3px;
+  transition: background 0.15s, color 0.15s;
+}
+.style-tag.selected,
+.style-tag:active {
+  background: #c28b6b;
+  color: #fff;
+}
+.professional-textarea {
+  width: 100%;
+  background: #fff;
+  border: 1.3px solid #e0d3c0;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #674f32;
+  resize: vertical;
+  padding: 12px 6px;
+  font-family: inherit;
+}
+input[type="time"] {
+  font-size: 14px;
+  padding: 6px;
+  border: 1px solid #c28b6b66;
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+button[type="button"] {
+  border-radius: 3px;
+  color: #fff;
+  padding: 5px 17px;
+  background: #c28b6b;
+  border: none;
+  font-size: 13.7px;
+  margin-bottom: 4px;
+}
+button[type="button"]:hover {
+  background: #c28b6bb2;
+}
+.back-arrow-btn {
+  position: absolute;
+  left: 9px;
+  top: 38px;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 6px;    
+  background-color: #ffffff; 
+  transition: opacity 0.2s;
+}
+.back-arrow-btn svg {
+  display: inline-block;
 }
 
-
-/* --- Back Arrow Button --- */
-.back-arrow-btn {
-    position: absolute;
-    left: 32px; /* pad from container edge */
-    top: 38px;  /* just above the section content */
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 0;
-    transition: opacity 0.2s;
-  }
-  
-  .back-arrow-btn svg {
-    display: inline-block;
-  }
-  
-  .back-arrow-btn .back-text {
-    color: #000000;
-    font-size: 15px;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    margin-top: 2px;
-  }
-  
-  .back-arrow-btn:active,
-  .back-arrow-btn:focus {
-    opacity: 0.7;
-  }
-  
-  /* Push container to relative to allow absolute arrow */
-  .register-container {
-    position: relative;
-  }
-  /* Responsive: adjust arrow on small screens */
-  @media (max-width: 640px) {
-    .back-arrow-btn {
-      left: 10px;
-      top: 24px;
-    }
-  }
-
-
-
-  
-  
-
+.back-arrow-btn .back-text {
+  color: #000000;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin-top: 2px;
+}
+.back-arrow-btn:active,
+.back-arrow-btn:focus {
+  opacity: 0.7;
+}
 @media (max-width: 950px) {
   .register-container {
     max-width: 95vw;
@@ -311,4 +446,21 @@ select:hover {
     width: 100%;
     max-width: 194px;
   }
+}
+.preview-box {
+  border: 1.4px solid #c28b6bb2;
+  background: #faf5f0;
+  border-radius: 8px;
+  padding: 22px 18px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  color: #3a2612;
+  line-height: 1.72;
+}
+.preview-box > div {
+  margin-bottom: 10px;
+}
+.preview-box input {
+  font-size: 14px;
+  margin: 2px 0;
 }

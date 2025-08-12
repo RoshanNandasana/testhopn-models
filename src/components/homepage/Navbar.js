@@ -1,12 +1,45 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import "./Navbar.css";
-import { Link } from 'react-router-dom';
+
+import LoginModal from "./LoginModal";
+import RegisterModal from "./RegisterModal";
+import SignUpModal from "./SignUpModal";
+import EmailSignUpModal from "./EmailSignUpModal";
+import ClientAccountTypeModal from "./ClientAccountTypeModal";
+import OTPModal from "./OTPModal";
+import RegisterModel from "../registremodel/registermodel";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  // Menu + language selectors
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showLangOptions, setShowLangOptions] = useState(false);
+  const [selectedLang, setSelectedLang] = useState("English");
+
+  // Modal states
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [registerOpen, setRegisterOpen] = useState(false);
+  const [signUpModalOpen, setSignUpModalOpen] = useState(false);
+  const [emailSignupOpen, setEmailSignupOpen] = useState(false);
+  const [clientAccountModalOpen, setClientAccountModalOpen] = useState(false);
+
+  // OTP
+  const [otpOpen, setOtpOpen] = useState(false);
+  const [otpType, setOtpType] = useState("");
+  const [otpTo, setOtpTo] = useState("");
+
   const menuRef = useRef(null);
   const langRef = useRef(null);
+
+  const handleLangSelect = (lang, e) => {
+    e.preventDefault();
+    setSelectedLang(lang);
+    setShowLangOptions(false);
+  };
+  
 
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -22,35 +55,25 @@ const Navbar = () => {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const handleLangSelect = (lang, event) => {
-    event.stopPropagation();
-    setSelectedLang(lang);
-    setShowLangOptions(false);
-  };
-
-  const [selectedLang, setSelectedLang] = useState("English");
-
   return (
-    <header className="navbar">
-      <div className="navbar__brand">
-        <div>HOPn</div>
-        <div>Models</div>
-      </div>
-      <div className="navbar__hamburger" onClick={toggleMenu}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <nav className={`navbar__links ${isMenuOpen ? "open" : ""}`} ref={menuRef}>
-        <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
-        <Link to="/gallery" onClick={() => setIsMenuOpen(false)}>Models</Link>
-        <Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
-        <Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link>
-        <div
+    <>
+      <header className="navbar">
+        <div className="navbar__brand">
+          <div>HOPn</div>
+          <div>Models</div>
+        </div>
+
+        <div className="navbar__hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <span></span><span></span><span></span>
+        </div>
+
+        <nav className={`navbar__links ${isMenuOpen ? "open" : ""}`} ref={menuRef}>
+          <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+          <Link to="/gallery" onClick={() => setIsMenuOpen(false)}>Models</Link>
+          <Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+          <Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link>
+
+          <div
           className="navbar__lang"
           onClick={() => setShowLangOptions((prev) => !prev)}
           ref={langRef}
@@ -65,10 +88,84 @@ const Navbar = () => {
             <li onClick={(e) => handleLangSelect("العربية", e)}>العربية</li>
           </ul>
         </div>
-        <Link to="/login" className="navbar__auth" onClick={() => setIsMenuOpen(false)}>Login</Link>
-        <Link to="/register" className="navbar__register" onClick={() => setIsMenuOpen(false)}>Register</Link>
-      </nav>
-    </header>
+
+          <Link to="#" className="navbar__auth" onClick={(e) => { e.preventDefault(); setLoginOpen(true); }}>Login</Link>
+          <Link to="#" className="navbar__register" onClick={(e) => { e.preventDefault(); setRegisterOpen(true); }}>Register</Link>
+        </nav>
+      </header>
+
+      {/* Modals */}
+      <LoginModal
+        open={loginOpen}
+        onClose={() => setLoginOpen(false)}
+        onOpenRegister={() => {
+          setLoginOpen(false);
+          setRegisterOpen(true);
+        }}
+      />
+
+      <RegisterModal
+        open={registerOpen}
+        onClose={() => setRegisterOpen(false)}
+        onModelClick={() => {
+          setRegisterOpen(false);
+          setSignUpModalOpen(true);
+        }}
+        onClientClick={() => {
+          setRegisterOpen(false);
+          setClientAccountModalOpen(true);
+        }}
+        onOpenLogin={() => {
+          setRegisterOpen(false);
+          setLoginOpen(true);
+        }}
+      />
+
+      <SignUpModal
+        open={signUpModalOpen}
+        onClose={() => setSignUpModalOpen(false)}
+        onSignUpWithEmail={() => {
+          setSignUpModalOpen(false);
+          setEmailSignupOpen(true);
+        }}
+      />
+
+      <ClientAccountTypeModal
+        open={clientAccountModalOpen}
+        onClose={() => setClientAccountModalOpen(false)}
+        onIndividualClick={() => {
+          setClientAccountModalOpen(false);
+          setEmailSignupOpen(true);
+        }}
+        onCompanyClick={() => {
+          setClientAccountModalOpen(false);
+          setEmailSignupOpen(true);
+        }}
+      />
+
+      <EmailSignUpModal
+        open={emailSignupOpen}
+        onClose={() => setEmailSignupOpen(false)}
+        onEmailSignup={(email) => {
+          setEmailSignupOpen(false);
+          setOtpType("email");
+          setOtpTo(email);
+          setOtpOpen(true);
+        }}
+      />
+
+      <OTPModal
+        open={otpOpen}
+        type={otpType}
+        to={otpTo}
+        onClose={() => setOtpOpen(false)}
+        onSubmit={(otp) => {
+          console.log("OTP entered:", otp);
+          setOtpOpen(false);
+          navigate("/register-company");
+        }}
+      />
+    </>
   );
 };
 
