@@ -4,6 +4,7 @@ import "./Footer.css";
 const Footer = () => (
   <footer className="footer">
     <div className="footer__content">
+      {/* Brand & Language options */}
       <div className="footer__brand">
         <div>HOPn</div>
         <div>Models</div>
@@ -14,6 +15,7 @@ const Footer = () => (
         </div>
       </div>
 
+      {/* Footer navigation links */}
       <div className="footer__links">
         <div>
           <h4>Quick Links</h4>
@@ -40,17 +42,20 @@ const Footer = () => (
           <ul>
             <li><a href="mailto:support@hopn.su">support@hopn.su</a></li>
             <li>
-            <div className="navbar__icons">
-            <a href="#" title="Facebook" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
-            <a href="#" title="Instagram" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-            <a href="#" title="YouTube" aria-label="YouTube"><i className="fab fa-youtube"></i></a>
-            <a href="#" title="LinkedIn" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
-          </div>
+              {/* Social Icons */}
+              <div className="navbar__icons">
+                <a href="#" title="Facebook" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
+                <a href="#" title="Instagram" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
+                <a href="#" title="YouTube" aria-label="YouTube"><i className="fab fa-youtube"></i></a>
+                <a href="#" title="LinkedIn" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
+              </div>
             </li>
           </ul>
         </div>
       </div>
     </div>
+
+    {/* Footer bottom */}
     <div className="footer__bottom">
       <span>© 2025 HOPN Models. All rights reserved.</span>
       <span>

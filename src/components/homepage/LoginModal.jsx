@@ -4,6 +4,7 @@ import "./LoginModal.css";
 export default function LoginModal({ open, onClose, onOpenRegister }) {
   const modalRef = useRef();
 
+  // Close on Escape + prevent background scroll when open
   useEffect(() => {
     function onKeyDown(e) {
       if (e.key === "Escape") onClose();
@@ -18,6 +19,7 @@ export default function LoginModal({ open, onClose, onOpenRegister }) {
     };
   }, [open, onClose]);
 
+  // Close on click outside (backdrop)
   const handleBackdropClick = (e) => {
     if (modalRef.current && e.target === modalRef.current) onClose();
   };
@@ -31,6 +33,7 @@ export default function LoginModal({ open, onClose, onOpenRegister }) {
       onClick={handleBackdropClick}
     >
       <div className="login-modal">
+        {/* Close */}
         <button
           className="login-modal-close"
           onClick={onClose}
@@ -38,24 +41,32 @@ export default function LoginModal({ open, onClose, onOpenRegister }) {
         >
           &times;
         </button>
+
+        {/* Title */}
         <div className="login-modal-title">Sign In</div>
+
+        {/* Form */}
         <form className="login-modal-form" onSubmit={(e) => e.preventDefault()}>
           <input type="email" placeholder="Email" required autoFocus />
           <input type="password" placeholder="Password" required />
-          <button type="submit" className="login-modal-submit">Login</button>
+          <button type="submit" className="login-modal-submit">
+            Login
+          </button>
+
+          {/* Options */}
           <div className="login-modal-options">
             <span style={{ fontSize: "14px", color: "#98623e", cursor: "pointer" }}>
               Forgot password?
             </span>
-            <span style={{ fontSize: "14px", float: 'right' }}>
+            <span style={{ fontSize: "14px" }}>
               No account?{" "}
               <a
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  onOpenRegister(); // open register modal from parent
+                  onOpenRegister();
                 }}
-                style={{ color: '#c28b6b', textDecoration: 'underline' }}
+                style={{ color: "#c28b6b", textDecoration: "underline" }}
               >
                 Register
               </a>

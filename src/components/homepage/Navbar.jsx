@@ -14,7 +14,7 @@ import RegisterModel from "../registremodel/registermodel";
 const Navbar = () => {
   const navigate = useNavigate();
 
-  // Menu + language selectors
+  // Menu and language dropdown states
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showLangOptions, setShowLangOptions] = useState(false);
   const [selectedLang, setSelectedLang] = useState("English");
@@ -26,21 +26,23 @@ const Navbar = () => {
   const [emailSignupOpen, setEmailSignupOpen] = useState(false);
   const [clientAccountModalOpen, setClientAccountModalOpen] = useState(false);
 
-  // OTP
+  // OTP state
   const [otpOpen, setOtpOpen] = useState(false);
   const [otpType, setOtpType] = useState("");
   const [otpTo, setOtpTo] = useState("");
 
+  // Refs for detecting outside clicks
   const menuRef = useRef(null);
   const langRef = useRef(null);
 
+  // Language selector
   const handleLangSelect = (lang, e) => {
     e.preventDefault();
     setSelectedLang(lang);
     setShowLangOptions(false);
   };
-  
 
+  // Close menu/language dropdown if user clicks outside
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
       setIsMenuOpen(false);
@@ -58,43 +60,48 @@ const Navbar = () => {
   return (
     <>
       <header className="navbar">
+        {/* Brand */}
         <div className="navbar__brand">
           <div>HOPn</div>
           <div>Models</div>
         </div>
 
+        {/* Hamburger menu (mobile) */}
         <div className="navbar__hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <span></span><span></span><span></span>
         </div>
 
+        {/* Navigation links */}
         <nav className={`navbar__links ${isMenuOpen ? "open" : ""}`} ref={menuRef}>
           <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
           <Link to="/gallery" onClick={() => setIsMenuOpen(false)}>Models</Link>
           <Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
           <Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link>
 
+          {/* Language dropdown */}
           <div
-          className="navbar__lang"
-          onClick={() => setShowLangOptions((prev) => !prev)}
-          ref={langRef}
-        >
-          <div className="selected">
-            {selectedLang}
-            <span className="dropdown-arrow"></span>
+            className="navbar__lang"
+            onClick={() => setShowLangOptions((prev) => !prev)}
+            ref={langRef}
+          >
+            <div className="selected">
+              {selectedLang}
+              <span className="dropdown-arrow"></span>
+            </div>
+            <ul className="options" style={{ display: showLangOptions ? "block" : "none" }}>
+              <li onClick={(e) => handleLangSelect("English", e)}>English</li>
+              <li onClick={(e) => handleLangSelect("Deutsch", e)}>Deutsch</li>
+              <li onClick={(e) => handleLangSelect("العربية", e)}>العربية</li>
+            </ul>
           </div>
-          <ul className="options" style={{ display: showLangOptions ? "block" : "none" }}>
-            <li onClick={(e) => handleLangSelect("English", e)}>English</li>
-            <li onClick={(e) => handleLangSelect("Deutsch", e)}>Deutsch</li>
-            <li onClick={(e) => handleLangSelect("العربية", e)}>العربية</li>
-          </ul>
-        </div>
 
+          {/* Auth buttons */}
           <Link to="#" className="navbar__auth" onClick={(e) => { e.preventDefault(); setLoginOpen(true); }}>Login</Link>
           <Link to="#" className="navbar__register" onClick={(e) => { e.preventDefault(); setRegisterOpen(true); }}>Register</Link>
         </nav>
       </header>
 
-      {/* Modals */}
+      {/* --- Modals --- */}
       <LoginModal
         open={loginOpen}
         onClose={() => setLoginOpen(false)}

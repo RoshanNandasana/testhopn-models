@@ -3,8 +3,11 @@ import './view.css';
 
 const View = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isDateTimeOpen, setIsDateTimeOpen] = useState(false);
+
+  // Filters state
   const [filters, setFilters] = useState({
-    dateTime: { start: '', end: '' }, // Updated to handle start and end times
+    dateTime: { start: '', end: '' },
     city: '',
     country: '',
     price: '',
@@ -15,8 +18,8 @@ const View = () => {
     language: '',
     sortBy: ''
   });
-  const [isDateTimeOpen, setIsDateTimeOpen] = useState(false); // Toggle for date/time section
 
+  // Example dataset of models
   const models = [
     {
       name: 'Tiana Stoltz',
@@ -157,10 +160,7 @@ const View = () => {
   ];
 
   const handleFilterChange = (type, value) => {
-    setFilters((prev) => ({
-      ...prev,
-      [type]: value
-    }));
+    setFilters((prev) => ({ ...prev, [type]: value }));
   };
 
   const clearFilters = () => {
@@ -178,31 +178,27 @@ const View = () => {
     });
   };
 
-  // Filter and sort models
+  // Filter & sort models
   const filteredModels = models
-    .filter((model) => {
-      // Add dateTime filter logic if needed (e.g., compare model availability with filters.dateTime)
-      return (
-        (!filters.city || model.city.toLowerCase() === filters.city.toLowerCase()) &&
-        (!filters.country || model.country.toLowerCase() === filters.country.toLowerCase()) &&
-        (!filters.price || model.price === (filters.price === '500+' ? '+500€' : filters.price + '€')) &&
-        (!filters.gender || model.gender.toLowerCase() === filters.gender.toLowerCase()) &&
-        (!filters.modelType || model.type.toLowerCase() === filters.modelType.toLowerCase()) &&
-        (!filters.experience || model.experience.toLowerCase() === filters.experience.toLowerCase()) &&
-        (!filters.rating || model.rating >= parseInt(filters.rating)) &&
-        (!filters.language || model.languages.includes(filters.language))
-      );
-    })
+    .filter((model) => (
+      (!filters.city || model.city.toLowerCase() === filters.city.toLowerCase()) &&
+      (!filters.country || model.country.toLowerCase() === filters.country.toLowerCase()) &&
+      (!filters.price || model.price === (filters.price === '500+' ? '+500€' : filters.price + '€')) &&
+      (!filters.gender || model.gender.toLowerCase() === filters.gender.toLowerCase()) &&
+      (!filters.modelType || model.type.toLowerCase() === filters.modelType.toLowerCase()) &&
+      (!filters.experience || model.experience.toLowerCase() === filters.experience.toLowerCase()) &&
+      (!filters.rating || model.rating >= parseInt(filters.rating)) &&
+      (!filters.language || model.languages.map(l => l.toLowerCase()).includes(filters.language.toLowerCase()))
+    ))
     .sort((a, b) => {
-      if (filters.sortBy === 'name') {
-        return a.name.localeCompare(b.name);
-      } else if (filters.sortBy === 'price-low') {
+      if (filters.sortBy === 'name') return a.name.localeCompare(b.name);
+      if (filters.sortBy === 'price-low') {
         const priceA = parseInt(a.price.split('-')[0]) || 500;
-        const priceB = parseInt(b.price.split('-')[0]) || 500;
+        const priceB = parseInt(b.price.split('-')) || 500;
         return priceA - priceB;
       } else if (filters.sortBy === 'price-high') {
-        const priceA = parseInt(a.price.split('-')[0]) || 500;
-        const priceB = parseInt(b.price.split('-')[0]) || 500;
+        const priceA = parseInt(a.price.split('-')) || 500;
+        const priceB = parseInt(b.price.split('-')) || 500;
         return priceB - priceA;
       } else if (filters.sortBy === 'rating') {
         return b.rating - a.rating;
@@ -212,8 +208,10 @@ const View = () => {
 
   return (
     <div className="gallery-page">
-      {/* Backdrop */}
-      {isFilterOpen && <div className="filter-overlay" onClick={() => setIsFilterOpen(false)}></div>}
+      {/* Filter Backdrop */}
+      {isFilterOpen && (
+        <div className="filter-overlay" onClick={() => setIsFilterOpen(false)}></div>
+      )}
 
       {/* Filter Panel */}
       <div className={`filter-panel ${isFilterOpen ? 'open' : ''}`}>
@@ -223,39 +221,47 @@ const View = () => {
         </div>
 
         <div className="filter-content">
+          {/* Date & Time Accordion */}
           <div className={`filter-group ${isDateTimeOpen ? 'active' : ''}`}>
             <div className="filter-group-header" onClick={() => setIsDateTimeOpen(!isDateTimeOpen)}>
-              <label>Date & Time Availability <span className="think-icon">T</span></label>
+              <label>Date & Time Availability</label>
               <span className="filter-arrow">▶</span>
             </div>
             <div className="filter-group-content">
-              <h4>Data & Time Availability 2025</h4>
+              <h4>Date & Time Availability 2025</h4>
               <div className="date-time-inputs">
                 <div>
                   <label>Start Date & Time</label>
                   <input
                     type="datetime-local"
-                    value={filters.dateTime.start || ''}
-                    onChange={(e) => handleFilterChange('dateTime', { ...filters.dateTime, start: e.target.value })}
-                    min="2025-08-01T12:00" // Set min to current date (adjusted to IST 05:30 PM)
+                    value={filters.dateTime.start}
+                    onChange={(e) =>
+                      handleFilterChange('dateTime', { ...filters.dateTime, start: e.target.value })
+                    }
+                    min="2025-08-01T12:00"
                   />
                 </div>
                 <div>
                   <label>End Date & Time</label>
                   <input
                     type="datetime-local"
-                    value={filters.dateTime.end || ''}
-                    onChange={(e) => handleFilterChange('dateTime', { ...filters.dateTime, end: e.target.value })}
-                    min="2025-08-01T12:00" // Set min to current date (adjusted to IST 05:30 PM)
+                    value={filters.dateTime.end}
+                    onChange={(e) =>
+                      handleFilterChange('dateTime', { ...filters.dateTime, end: e.target.value })
+                    }
+                    min="2025-08-01T12:00"
                   />
                 </div>
               </div>
-              <button className="check-btn" onClick={() => console.log('Check Availability', filters.dateTime)}>Check Availability</button>
+              <button className="check-btn" onClick={() => console.log('Check Availability', filters.dateTime)}>
+                Check Availability
+              </button>
             </div>
           </div>
 
+          {/* Other Filters */}
           <div className="filter-group">
-            <label>City & Country</label>
+            <label>City</label>
             <select value={filters.city} onChange={(e) => handleFilterChange('city', e.target.value)}>
               <option value="">Select City</option>
               <option value="berlin">Berlin</option>
@@ -288,7 +294,7 @@ const View = () => {
           </div>
 
           <div className="filter-group">
-            <label>Model Type / Category</label>
+            <label>Model Type</label>
             <select value={filters.modelType} onChange={(e) => handleFilterChange('modelType', e.target.value)}>
               <option value="">Select Type</option>
               <option value="commercial">Commercial</option>
@@ -309,7 +315,7 @@ const View = () => {
           </div>
 
           <div className="filter-group">
-            <label>Rating <span className="think-icon">T</span></label>
+            <label>Rating</label>
             <select value={filters.rating} onChange={(e) => handleFilterChange('rating', e.target.value)}>
               <option value="">Select Rating</option>
               <option value="5">5 Stars</option>
@@ -331,7 +337,7 @@ const View = () => {
           </div>
 
           <div className="filter-group">
-            <label>Sort by <span className="think-icon">R</span></label>
+            <label>Sort by</label>
             <select value={filters.sortBy} onChange={(e) => handleFilterChange('sortBy', e.target.value)}>
               <option value="">Default</option>
               <option value="name">Name</option>
@@ -341,6 +347,7 @@ const View = () => {
             </select>
           </div>
 
+          {/* Actions */}
           <div className="filter-actions">
             <button className="clear-btn" onClick={clearFilters}>Clear All</button>
             <button className="save-btn" onClick={() => setIsFilterOpen(false)}>Save</button>
@@ -348,18 +355,16 @@ const View = () => {
         </div>
       </div>
 
-      {/* Main Gallery */}
+      {/* Gallery */}
       <div className="gallery-container">
         <h2>Models Gallery</h2>
 
         <div className="filter-toolbar">
           <button className="minimal-btn" onClick={() => setIsFilterOpen(true)}>
-            <i className="fas fa-sliders-h"></i>
-            <span>Filters</span>
+            <i className="fas fa-sliders-h"></i><span>Filters</span>
           </button>
           <button className="minimal-btn">
-            <i className="fas fa-map-marker-alt"></i>
-            <span>View on Map</span>
+            <i className="fas fa-map-marker-alt"></i><span>View on Map</span>
           </button>
           <label className="minimal-btn checkbox-label">
             <input type="checkbox" defaultChecked />

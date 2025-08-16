@@ -80,6 +80,7 @@
   background: #d19b7f;
 }
 
+/* Tablet large (close to desktop) */
 @media (max-width: 1279px) and (min-width: 769px) {
   .hero-section {
     gap: 24px;
@@ -93,6 +94,7 @@
   }
 }
 
+/* Medium tablets */
 @media (max-width: 1024px) and (min-width: 769px) {
   .hero-section {
     gap: 18px;
@@ -104,6 +106,7 @@
   }
 }
 
+/* Mobile / small tablet */
 @media (max-width: 768px) {
   .hero-section {
     flex-direction: column;
@@ -132,6 +135,7 @@
   }
 }
 
+/* Small mobile */
 @media (max-width: 480px) {
   .hero-section {
     gap: 14px;

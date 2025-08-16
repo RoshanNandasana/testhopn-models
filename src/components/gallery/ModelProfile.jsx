@@ -4,17 +4,17 @@ import './ModelProfile.css';
 const ModelProfile = () => {
   const tags = [
     "Advertisement", "Runway", "High Fashion",
-    "High Fashion", "Editorial", "Brand",
-    "Classic", "Luxury", "Elegant", "Edgy", "Natural", "Youthful"
+    "Editorial", "Brand", "Classic",
+    "Luxury", "Elegant", "Edgy", "Natural", "Youthful"
   ];
   const languages = ["English", "German", "Arabic"];
 
   return (
     <div className="profile-container">
+
       {/* Top section: image + right panel */}
       <div className="profile-main">
         <div className="profile-photo">
-          {/* Replace src with your actual file, or leave as public/default */}
           <img src="/images/gallerymodel1.jpg" alt="Model" />
         </div>
         <div className="profile-main-info">
@@ -25,18 +25,20 @@ const ModelProfile = () => {
             </span>
             <span className="profile-verified">Verified</span>
           </div>
+
           {/* Tags */}
           <div className="profile-tags">
-            {tags.map(t =>
+            {tags.map(t => (
               <span key={t} className="profile-tag">{t}</span>
-            )}
+            ))}
           </div>
-          {/* Booking button */}
+
+          {/* Primary booking button */}
           <button className="booking-btn">Request Booking</button>
         </div>
       </div>
 
-      {/* Main box with tabs and info */}
+      {/* Info box with tabs and details */}
       <div className="profile-box">
         <div className="profile-tabs">
           <span className="profile-tab active">General</span>
@@ -46,6 +48,7 @@ const ModelProfile = () => {
           <span className="profile-tab">Availability</span>
           <span className="profile-tab">Reviews</span>
         </div>
+
         <div className="profile-details-grid">
           <div>
             <div className="profile-detail-label">Age</div>
@@ -70,10 +73,14 @@ const ModelProfile = () => {
           <div>
             <div className="profile-detail-label">Languages</div>
             <div>
-              {languages.map(l => <span key={l} className="profile-lang">{l}</span>)}
+              {languages.map(l => (
+                <span key={l} className="profile-lang">{l}</span>
+              ))}
             </div>
           </div>
         </div>
+
+        {/* Secondary booking button */}
         <button className="booking-btn details">Request Booking</button>
       </div>
     </div>

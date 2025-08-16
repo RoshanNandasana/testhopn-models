@@ -3,7 +3,6 @@
   color: #d4d1c9;
   padding: 50px 1% 24px 1%;
   margin-top: 60px;
-  margin-bottom: 0px;
   font-size: 15px;
   width: 100%;
   box-sizing: border-box;
@@ -16,7 +15,6 @@
   align-items: flex-start;
   gap: 64px;
   flex-wrap: wrap;
-  width: 100%;
   max-width: 1440px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -29,13 +27,6 @@
   flex: 1.2;
   margin-top: 18px;
   font-size: 24px;
-}
-
-.footer__brand-title {
-  font-size: 28px;
-  margin-bottom: 18px;
-  display: block;
-  letter-spacing: 0.03em;
 }
 
 .footer__lang {
@@ -65,14 +56,7 @@
   flex: 3.5;
   flex-wrap: wrap;
   font-weight: 300;
-  min-width: 0;
   box-sizing: border-box;
-}
-
-.footer__col {
-  min-width: 130px;
-  margin-bottom: 14px;
-  word-break: break-word;
 }
 
 .footer__links h4 {
@@ -107,7 +91,8 @@
   color: #c3977e;
 }
 
-.footer__icons {
+.footer__icons,
+.navbar__icons {
   display: flex;
   gap: 14px;
   margin-top: 12px;
@@ -122,7 +107,6 @@
   align-items: center;
   justify-content: center;
   transition: color 0.2s;
-  margin-right: 3;
   text-decoration: none;
   border-radius: 50%;
   width: 32px;
@@ -132,16 +116,7 @@
 .footer__icons a:hover,
 .navbar__icons a:hover {
   color: #c3977e;
-  background: rgba(255,255,255,0.06);
-}
-
-.navbar__icons {
-  display: flex;
-  flex-direction: row;
-  gap: 14px;
-  align-items: center;
-  margin-top: 8px;
-  margin-bottom: 4px;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .footer__bottom {
@@ -155,16 +130,10 @@
   color: #a29c8b;
   flex-wrap: wrap;
   gap: 8px;
-  width: 100%;
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
-  overflow-x: hidden;
-}
-
-.footer__copyright {
-  font-size: 0.98em;
 }
 
 .footer__bottom a {
@@ -179,16 +148,15 @@
   text-decoration: underline;
 }
 
+/* Responsive breakpoints */
 @media (max-width: 1200px) {
   .footer__content { gap: 38px; }
   .footer__links { gap: 32px; }
-  .footer__col { min-width: 110px; }
 }
 
 @media (max-width: 950px) {
   .footer__content { gap: 26px; }
   .footer__links { gap: 16px; }
-  .footer__col { min-width: 100px; }
 }
 
 @media (max-width: 700px) {
@@ -199,15 +167,8 @@
     padding: 20px 5%;
     text-align: center;
   }
-  .footer__brand {
-    margin-top: 0;
-    width: 100%;
-  }
-  .footer__lang {
-    margin-top: 10px;
-    width: 100%;
-    align-items: center;
-  }
+  .footer__brand { margin-top: 0; width: 100%; }
+  .footer__lang { margin-top: 10px; width: 100%; align-items: center; }
   .footer__links {
     flex-direction: column;
     align-items: center;
@@ -215,15 +176,7 @@
     margin-left: 0;
     gap: 15px;
   }
-  .footer__col {
-    min-width: 100%;
-    margin-bottom: 10px;
-  }
-  .footer__icons {
-    justify-content: center;
-    width: 100%;
-    margin-top: 15px;
-  }
+  .footer__icons { justify-content: center; width: 100%; margin-top: 15px; }
   .footer__bottom {
     flex-direction: column;
     align-items: center;
@@ -231,54 +184,19 @@
     text-align: center;
     padding-top: 15px;
   }
-  .footer__bottom a {
-    margin-left: 0;
-    display: block;
-  }
+  .footer__bottom a { margin-left: 0; display: block; }
 }
 
 @media (max-width: 480px) {
-  .footer {
-    padding: 15px 5%;
-    font-size: 14px;
+  .footer { padding: 15px 5%; font-size: 14px; }
+  .footer__brand { font-size: 20px; }
+  .footer__lang { font-size: 14px; gap: 5px; }
+  .footer__links { gap: 10px; }
+  .footer__links h4 { font-size: 15px; }
+  .footer__links a { font-size: 13px; }
+  .footer__icons { gap: 8px; }
+  .footer__icons a, .navbar__icons a {
+    font-size: 16px; width: 26px; height: 26px;
   }
-  .footer__brand {
-    font-size: 20px;
-  }
-  .footer__brand-title {
-    font-size: 22px;
-  }
-  .footer__lang {
-    font-size: 14px;
-    gap: 5px;
-  }
-  .footer__links {
-    gap: 10px;
-  }
-  .footer__col {
-    font-size: 13px;
-  }
-  .footer__links h4 {
-    font-size: 15px;
-  }
-  .footer__links ul {
-    font-size: 13px;
-  }
-  .footer__links a {
-    font-size: 13px;
-  }
-  .footer__icons {
-    gap: 8px;
-  }
-  .footer__icons a,
-  .navbar__icons a {
-    font-size: 16px;
-    width: 26px;
-    height: 26px;
-  }
-  .footer__bottom {
-    font-size: 0.85rem;
-    padding-top: 10px;
-    gap: 5px;
-  }
+  .footer__bottom { font-size: 0.85rem; padding-top: 10px; gap: 5px; }
 }

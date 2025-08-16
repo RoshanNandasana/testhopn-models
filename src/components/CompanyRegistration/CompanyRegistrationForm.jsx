@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./CompanyRegistrationForm.css";
 
-
 export default function CompanyRegistrationForm() {
   const [form, setForm] = useState({
     fullName: "",
@@ -10,11 +9,13 @@ export default function CompanyRegistrationForm() {
     industry: "",
   });
 
+  // Handle input changes
   function handleChange(e) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
+  // Handle form submit
   function handleSubmit(e) {
     e.preventDefault();
     console.log("Form Data:", form);
@@ -23,14 +24,16 @@ export default function CompanyRegistrationForm() {
 
   return (
     <div className="company-register-container">
+      {/* Switch link */}
       <div className="switch-link">
         <a href="#">Switch to Individual</a>
       </div>
 
+      {/* Registration form */}
       <form className="company-register-form" onSubmit={handleSubmit}>
+        
         {/* Heading */}
         <div className="form-header">
-         
           <h2>Main Company Information</h2>
         </div>
 
@@ -80,10 +83,14 @@ export default function CompanyRegistrationForm() {
             value={form.industry}
             onChange={handleChange}
           />
-          <img src="/images/icons/cregister.jpg" alt="search" className="search-icon" />
+          <img
+            src="/images/icons/cregister.jpg"
+            alt="search"
+            className="search-icon"
+          />
         </div>
 
-        {/* Next Button */}
+        {/* Submit Button */}
         <div className="form-actions">
           <button type="submit">Next</button>
         </div>

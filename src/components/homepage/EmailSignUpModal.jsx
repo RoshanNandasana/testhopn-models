@@ -8,21 +8,27 @@ export default function EmailSignUpModal({ open, onClose, onEmailSignup }) {
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState("");
 
+  // Prevent background scroll when modal is open
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = "visible"; };
   }, [open]);
 
+  // Close on Escape press
   useEffect(() => {
-    function onKeyDown(e) { if (e.key === "Escape") onClose(); }
+    function onKeyDown(e) {
+      if (e.key === "Escape") onClose();
+    }
     if (open) window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [open, onClose]);
 
+  // Close if clicking backdrop
   const handleBackdropClick = (e) => {
     if (modalRef.current && e.target === modalRef.current) onClose();
   };
 
+  // Handle submit validation
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
@@ -34,7 +40,7 @@ export default function EmailSignUpModal({ open, onClose, onEmailSignup }) {
       setError("Passwords do not match.");
       return;
     }
-    onEmailSignup(email); // parent handler (opens next step / route)
+    onEmailSignup(email); // Pass email upward
     setEmail(""); setPassword(""); setConfirm(""); setError("");
   };
 
@@ -47,8 +53,17 @@ export default function EmailSignUpModal({ open, onClose, onEmailSignup }) {
       onClick={handleBackdropClick}
     >
       <div className="register-modal">
-        <button className="register-modal-close" onClick={onClose} aria-label="Close">&times;</button>
+        <button
+          className="register-modal-close"
+          onClick={onClose}
+          aria-label="Close"
+        >
+          &times;
+        </button>
+
         <div className="register-modal-title">Sign Up</div>
+
+        {/* Signup Form */}
         <form className="email-signup-form" onSubmit={handleSubmit} noValidate>
           <input
             type="email"
@@ -74,9 +89,17 @@ export default function EmailSignUpModal({ open, onClose, onEmailSignup }) {
             required
           />
           {error && <div className="error-text">{error}</div>}
-          <button type="submit" className="signup-email-btn" style={{marginTop: '8px'}}>Sign Up</button>
+          <button
+            type="submit"
+            className="signup-email-btn"
+            style={{ marginTop: "8px" }}
+          >
+            Sign Up
+          </button>
         </form>
-        <div className="register-modal-footer" style={{marginTop:15}}>
+
+        {/* Footer */}
+        <div className="register-modal-footer" style={{ marginTop: 15 }}>
           Already have an account? <a href="/login">Sign in</a>
         </div>
       </div>

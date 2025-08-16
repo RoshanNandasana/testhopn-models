@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import "./RegisterModal.css"; // reuse your existing modal styles
+import "./RegisterModal.css"; // reuse shared modal styles
 
 export default function ClientAccountTypeModal({
   open,
@@ -9,31 +9,24 @@ export default function ClientAccountTypeModal({
 }) {
   const modalRef = useRef();
 
-  // Disable background scroll while modal is open
+  // Prevent background scroll
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "visible";
-    };
+    return () => { document.body.style.overflow = "visible"; };
   }, [open]);
 
-  // Close on ESC key
+  // Close on Escape key
   useEffect(() => {
-    function onKeyDown(e) {
-      if (e.key === "Escape") onClose();
-    }
+    function onKeyDown(e) { if (e.key === "Escape") onClose(); }
     if (open) window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [open, onClose]);
 
-  // Don't render anything if modal is closed
   if (!open) return null;
 
-  // Close when clicking background
+  // Close if clicking backdrop
   const handleBackdropClick = (e) => {
-    if (modalRef.current && e.target === modalRef.current) {
-      onClose();
-    }
+    if (modalRef.current && e.target === modalRef.current) onClose();
   };
 
   return (
@@ -43,7 +36,7 @@ export default function ClientAccountTypeModal({
       onClick={handleBackdropClick}
     >
       <div className="register-modal">
-        {/* Close button */}
+        {/* Close */}
         <button
           className="register-modal-close"
           onClick={onClose}
@@ -55,18 +48,12 @@ export default function ClientAccountTypeModal({
         {/* Title */}
         <div className="register-modal-title">Sign Up as</div>
 
-        {/* Action buttons */}
+        {/* Action Buttons */}
         <div className="register-modal-actions">
-          <button
-            className="register-modal-btn"
-            onClick={onIndividualClick}
-          >
+          <button className="register-modal-btn" onClick={onIndividualClick}>
             Individual
           </button>
-          <button
-            className="register-modal-btn"
-            onClick={onCompanyClick}
-          >
+          <button className="register-modal-btn" onClick={onCompanyClick}>
             Company
           </button>
         </div>
