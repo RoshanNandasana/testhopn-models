@@ -13,6 +13,9 @@ import Gallery from "./components/gallery/view";
 import RegisterModel from "./components/registremodel/registermodel";
 import ModelProfile from "./components/gallery/ModelProfile";
 import CompanyRegistrationForm from "./components/CompanyRegistration/CompanyRegistrationForm";
+import CompanyTypeStep from './components/CompanyRegistration/CompanyTypeStep';
+import CompanyRegisterFlow from './components/CompanyRegistration/CompanyRegisterFlow';
+
 
 export default function App() {
   return (
@@ -37,6 +40,9 @@ export default function App() {
           <Route path="/register" element={<RegisterModel />} />
           <Route path="/model-profile" element={<ModelProfile />} />
           <Route path="/register-company" element={<CompanyRegistrationForm />} />
+          <Route path="/register/company/type" element={<CompanyTypeStep setStep={() => {}} />} />
+            <Route path="/register/company/type" element={<CompanyRegisterFlow />} />
+
         </Routes>
 
         <Footer />

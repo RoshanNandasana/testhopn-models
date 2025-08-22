@@ -9,6 +9,8 @@ export default function CompanyRegistrationForm() {
     industry: "",
   });
 
+  
+
   // Handle input changes
   function handleChange(e) {
     const { name, value } = e.target;
