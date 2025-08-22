@@ -1,0 +1,202 @@
+.footer {
+  background: #242321;
+  color: #d4d1c9;
+  padding: 50px 1% 24px 1%;
+  margin-top: 60px;
+  font-size: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 64px;
+  flex-wrap: wrap;
+  max-width: 1440px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.footer__brand {
+  font-family: 'Italiana';
+  font-style: normal;
+  min-width: 170px;
+  flex: 1.2;
+  margin-top: 18px;
+  font-size: 24px;
+}
+
+.footer__lang {
+  font-family: 'Inter', sans-serif;
+  margin-top: 35px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.footer__lang > * {
+  color: #d4d1c9;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+.footer__lang > *:hover {
+  color: #c3977e;
+}
+
+.footer__links {
+  padding-left: 0;
+  margin-left: 100px;
+  display: flex;
+  gap: 200px;
+  flex: 3.5;
+  flex-wrap: wrap;
+  font-weight: 300;
+  box-sizing: border-box;
+}
+
+.footer__links h4 {
+  font-size: 18px;
+  color: #d0c4b3;
+  margin-bottom: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.footer__links ul {
+  list-style: none;
+  font-size: 16px;
+  padding: 0;
+  margin: 20px 0 10px 0;
+}
+
+.footer__links a {
+  font-family: 'Inter', sans-serif;
+  color: #d4d1c9;
+  text-decoration: none;
+  margin-bottom: 6px;
+  font-size: 16px;
+  font-weight: 300;
+  transition: color 0.2s;
+  display: block;
+  line-height: 2;
+  word-break: break-word;
+}
+
+.footer__links a:hover {
+  color: #c3977e;
+}
+
+.footer__icons,
+.navbar__icons {
+  display: flex;
+  gap: 14px;
+  margin-top: 12px;
+  align-items: center;
+}
+
+.footer__icons a,
+.navbar__icons a {
+  color: #d4d1c9;
+  font-size: 19px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+  text-decoration: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.footer__icons a:hover,
+.navbar__icons a:hover {
+  color: #c3977e;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  margin-top: 32px;
+  border-top: 1px solid #393736;
+  font-size: 0.93rem;
+  color: #a29c8b;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.footer__bottom a {
+  color: #a69786;
+  margin-left: 10px;
+  text-decoration: none;
+  transition: color 0.18s;
+  font-size: 0.98em;
+}
+
+.footer__bottom a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
+  .footer__content { gap: 38px; }
+  .footer__links { gap: 32px; }
+}
+
+@media (max-width: 950px) {
+  .footer__content { gap: 26px; }
+  .footer__links { gap: 16px; }
+}
+
+@media (max-width: 700px) {
+  .footer__content {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 5%;
+    text-align: center;
+  }
+  .footer__brand { margin-top: 0; width: 100%; }
+  .footer__lang { margin-top: 10px; width: 100%; align-items: center; }
+  .footer__links {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-left: 0;
+    gap: 15px;
+  }
+  .footer__icons { justify-content: center; width: 100%; margin-top: 15px; }
+  .footer__bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    padding-top: 15px;
+  }
+  .footer__bottom a { margin-left: 0; display: block; }
+}
+
+@media (max-width: 480px) {
+  .footer { padding: 15px 5%; font-size: 14px; }
+  .footer__brand { font-size: 20px; }
+  .footer__lang { font-size: 14px; gap: 5px; }
+  .footer__links { gap: 10px; }
+  .footer__links h4 { font-size: 15px; }
+  .footer__links a { font-size: 13px; }
+  .footer__icons { gap: 8px; }
+  .footer__icons a, .navbar__icons a {
+    font-size: 16px; width: 26px; height: 26px;
+  }
+  .footer__bottom { font-size: 0.85rem; padding-top: 10px; gap: 5px; }
+}
