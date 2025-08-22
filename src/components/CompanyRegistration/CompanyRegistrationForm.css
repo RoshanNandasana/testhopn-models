@@ -103,3 +103,9 @@
 .form-actions button:hover {
   background-color: #ad8652;
 }
+
+.note {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 20px;
+}
