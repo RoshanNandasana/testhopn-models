@@ -11,6 +11,17 @@ body {
   box-shadow: 0 6px 36px rgba(0,0,0,0.05);
   padding: 36px;
   min-height: 650px;
+  background: #fff;
+}
+.back-link {
+  background: none;
+  border: none;
+  color: #ad8652;
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 13px;
+  cursor: pointer;
+  padding-left: 0;
 }
 
 /* ----- Main Row (photo + info) ----- */
@@ -19,15 +30,12 @@ body {
   gap: 40px;
   align-items: flex-start;
 }
-
 .profile-photo img {
   width: 270px; height: 350px;
   object-fit: cover;
   background: #fff;
 }
-
 .profile-main-info { flex: 1; }
-
 .profile-name-rating {
   display: flex; align-items: center;
   gap: 12px; margin-bottom: 8px;
@@ -40,7 +48,6 @@ body {
   font-weight: 500; display: flex; gap: 4px;
 }
 .star { color: #c28b6b; font-size: 19px; }
-
 .profile-verified {
   background: #f8f3ee; color: #c28b6b;
   font-size: 14px; font-weight: 500;
@@ -147,3 +154,154 @@ body {
     grid-template-columns: 1fr; gap: 19px 0;
   }
 }
+
+
+
+/* BACKDROP */
+.booking-modal-backdrop {
+  background: rgba(30, 21, 13, 0.17);
+  position: fixed;
+  z-index: 21;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw; height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* MODAL BOX */
+.booking-modal {
+  background: #fff;
+  border-radius: 9px;
+  box-shadow: 0 10px 54px 0 #4d36222b, 0 1.5px 6px #6343232b;
+  min-width: 420px; max-width: 520px;
+  width: 100%;
+  padding: 40px 40px 28px 40px;
+  display: block;
+  position: relative;
+  z-index: 22;
+  animation: fadein 0.2s ease;
+}
+@keyframes fadein { from { opacity: 0; transform: translateY(50px);} to { opacity: 1; transform: none; } }
+.modal-title {
+  text-align: center;
+  font-size: 1.42rem;
+  color: #c28b6b;
+  margin-bottom: 9px;
+  font-weight: 500;
+}
+.modal-desc {
+  color: #7d7670;
+  text-align: center;
+  font-size: 1.013rem;
+  margin-bottom: 18px;
+}
+.booking-type-options {
+  display: flex; gap: 18px; justify-content: center; margin-bottom: 25px;
+}
+.booking-type-card {
+  cursor: pointer;
+  flex: 1;
+  background: #f8f4ef;
+  border: 1.5px solid #ead4be;
+  padding: 28px 13px 20px 13px;
+  font-size: 1.07rem;
+  border-radius: 7px;
+  color: #a0866c;
+  box-shadow: 0 1.5px 7px #e8dacd23;
+  text-align: center;
+  transition: border 0.15s, background 0.15s;
+}
+.booking-type-card.selected, .booking-type-card:hover {
+  border-color: #c28b6b;
+  background: #fef7f2;
+  color: #b47f54;
+}
+.booking-type-title {
+  font-weight: bold; margin-bottom: 2px; font-size: 1.1rem;
+}
+.booking-type-desc {
+  color: #967e64; font-size: 0.98rem; margin-top: 8px;
+}
+.booking-popup-actions {
+  display: flex; gap: 19px; justify-content: flex-end; margin-top: 19px;
+}
+.booking-cancel, .booking-continue {
+  border: none;
+  padding: 11px 34px;
+  border-radius: 6px;
+  font-size: 1rem; font-weight: 500;
+  background: #fff; color: #c28b6b; cursor: pointer;
+  transition: background 0.17s, color 0.17s;
+}
+.booking-cancel { border: 1.5px solid #ead4be; }
+.booking-cancel:hover { background: #fcf3ea; }
+.booking-continue {
+  background: #c28b6b; color: #fff;
+  border: 1.5px solid #c28b6b;
+}
+.booking-continue:hover { opacity: 0.95; }
+.booking-calendar-wrapper {
+  display: flex; margin: 28px 0 0 0; width: 100%; gap: 29px;
+}
+.simple-calendar {
+  min-width: 182px; min-height: 193px; background: #f4ede7; border-radius: 10px; display:flex; align-items: center; justify-content: center; color: #c28b6b; font-size: 1.1rem; font-weight: 500;
+}
+.rate-desc { margin: 18px 0 10px 0; color: #b1815d; font-size: 1rem; font-weight: 500;}
+.hour-slots { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 7px; }
+.hour-slot {
+  background: #f8f4ef; color: #a0866c; border: 1.2px solid #ead4be;
+  border-radius: 6px; font-size: 15px; font-weight: 500;
+  padding: 8px 18px; margin: 0; cursor: pointer; transition: background 0.13s; margin-bottom:2px;
+}
+.hour-slot:hover, .hour-slot.selected { background: #ffe6cb; color: #a0866c;}
+.hour-summary { font-weight: bold; color: #c28b6b; margin-top: 14px; font-size: 1.05rem;}
+.project-time-input {
+  width: 60px; border: 1.2px solid #ead4be; border-radius: 6px;
+  font-size: 1.07rem; color: #a0866c; padding: 4px 9px; margin: 0 5px;
+}
+@media (max-width: 700px) {
+  .booking-modal {min-width:unset;max-width:95vw; padding: 15px;}
+  .booking-type-options {flex-direction: column;}
+  .booking-calendar-wrapper {flex-direction:column; gap: 14px;}
+}
+
+.booking-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 21, 13, 0.17);
+  z-index: 1000;
+}
+
+.booking-modal-wrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 1010;
+}
+
+.booking-modal {
+  background: #fff;
+  border-radius: 9px;
+  max-width: 520px;
+  width: 100%;
+  padding: 40px 40px 28px 40px;
+  animation: fadeIn 0.2s ease;
+  box-shadow: 0 10px 54px rgba(99, 67, 35, .4);
+  outline: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Rest of booking modal styles like .booking-type-card, buttons, calendar layout etc., as given earlier */

@@ -12,7 +12,7 @@ import Footer from "./components/homepage/Footer";
 import Gallery from "./components/gallery/view";
 import RegisterModel from "./components/registremodel/registermodel";
 import ModelProfile from "./components/gallery/ModelProfile";
-import CompanyRegistrationForm from "./components/CompanyRegistration/CompanyRegistrationForm";
+import RegistrationPage from "./components/CompanyRegistration/RegistrationPage"; // <-- Use your switcher here
 
 export default function App() {
   return (
@@ -31,12 +31,12 @@ export default function App() {
               </main>
             } 
           />
-
           {/* Routes */}
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/register" element={<RegisterModel />} />
           <Route path="/model-profile" element={<ModelProfile />} />
-          <Route path="/register-company" element={<CompanyRegistrationForm />} />
+          {/* Use RegistrationPage for company registration */}
+          <Route path="/register-company" element={<RegistrationPage />} />
         </Routes>
 
         <Footer />

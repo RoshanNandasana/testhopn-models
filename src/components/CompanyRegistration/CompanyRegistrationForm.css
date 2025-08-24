@@ -3,10 +3,12 @@
   margin: 0 auto;
   padding: 40px 20px;
   font-family: 'Inter', sans-serif;
+  background: #fff;
 }
 
+/* Switch link */
 .switch-link {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .switch-link a {
   color: #ad8652;
@@ -27,12 +29,13 @@
   position: relative;
 }
 .form-header h2 {
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-weight: 400;
   color: #ad8652;
+  margin: 0;
 }
 .form-icon {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   color: #ad8652;
 }
 .step-indicator {
@@ -40,6 +43,7 @@
   right: 0;
   font-size: 0.9rem;
   color: #b78b6d;
+  top: 5px;
 }
 
 /* Form Groups */
@@ -70,7 +74,22 @@
   border-color: #ad8652;
 }
 
-/* Industry Input */
+/* DOB Inputs */
+.dob-group label {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 6px;
+  display: block;
+}
+.dob-inputs {
+  display: flex;
+  gap: 10px;
+}
+.dob-inputs input {
+  flex: 1;
+}
+
+/* Industry Input & Search Icon */
 .industry-input {
   display: flex;
   align-items: center;
@@ -81,15 +100,23 @@
 .search-icon {
   position: absolute;
   right: 12px;
-  top: 10px;
+  top: 13px;
   font-size: 1rem;
+  color: #b4a28e;
   cursor: pointer;
+  background: none;
+  border: none;
 }
 
 /* Actions */
 .form-actions {
-  margin-top: 20px;
+  margin-top: 22px;
   text-align: left;
+}
+.form-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
 }
 .form-actions button {
   background-color: #c28b6b;
@@ -99,7 +126,148 @@
   border-radius: 3px;
   cursor: pointer;
   font-size: 1rem;
+  transition: background 0.2s;
 }
 .form-actions button:hover {
   background-color: #ad8652;
 }
+
+/* Secondary button (Back) */
+.secondary-button {
+  background: none;
+  border: 1px solid #ad8652;
+  color: #ad8652;
+  padding: 10px 26px;
+  border-radius: 3px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.secondary-button:hover {
+  background: #f5ece3;
+}
+
+/* Profile Add Button */
+.profile-add-button {
+  background-color: #c28b6b;
+  border: none;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+.profile-add-button:hover {
+  background-color: #ad8652;
+}
+
+.added-profiles-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 10px;
+  color: #ad8652;
+}
+
+/* Verify now link */
+.verify-now {
+  text-decoration: underline;
+  color: #ad8652;
+  font-size: 0.93rem;
+  cursor: pointer;
+}
+
+/* Small text and info on Contacts step */
+.form-group small span[role="img"] {
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+/* Review & Submit (Step 5) panel */
+.review-panel {
+  background: rgba(252,222,205,0.26);
+  border-radius: 16px;
+  max-width: 400px;
+  width: 100%;
+  padding: 26px 26px 22px 26px;
+  margin: 0 auto;
+}
+.review-panel-title {
+  font-weight: bold;
+  color: #ad8652;
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+.review-panel-label {
+  color: #684c2a;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #f5ece3;
+  padding-bottom: 3px;
+}
+.review-panel-label .edit-link {
+  float: right;
+  color: #ad8652;
+  cursor: pointer;
+}
+.review-panel-subtext {
+  font-size: 0.95rem;
+  color: #ad8652;
+}
+.review-panel-info {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #f5ece3;
+  padding-bottom: 5px;
+}
+.review-panel-address {
+  margin-bottom: 18px;
+}
+.review-submit-button {
+  margin-top: 13px;
+  width: 100%;
+  background: #f28743;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  padding: 12px 0;
+  cursor: pointer;
+}
+.review-submit-button:hover {
+  background: #ad8652;
+}
+
+/* Verification (Step 4) cards */
+.verification-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 12px #f6eae2;
+  padding: 16px 18px;
+  margin-bottom: 15px;
+}
+.verification-card-icon {
+  font-size: 2rem;
+  margin-right: 17px;
+}
+.verification-card-title {
+  font-weight: bold;
+}
+.verification-card-desc {
+  font-size: 0.97rem;
+  color: #333;
+}
+
+
+@media (max-width: 700px) {
+  .company-register-container {
+    max-width: 98vw;
+    padding: 18px 4vw;
+  }
+  .review-panel {
+    padding: 18px 6vw;
+  }
+}
+
+

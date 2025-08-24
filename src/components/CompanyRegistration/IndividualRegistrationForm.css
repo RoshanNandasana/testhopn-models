@@ -1,0 +1,159 @@
+.company-register-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+  }
+  .switch-link {
+    margin-bottom: 15px;
+  }
+  .switch-link a {
+    color: #ad8652;
+    font-size: 0.95rem;
+    text-decoration: none;
+  }
+  .switch-link a:hover {
+    text-decoration: underline;
+  }
+  /* Header */
+  .form-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 25px;
+    position: relative;
+  }
+  .form-header h2 {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #ad8652;
+    margin: 0;
+  }
+  .form-icon {
+    font-size: 1.1rem;
+    color: #ad8652;
+  }
+  .step-indicator {
+    position: absolute;
+    right: 0;
+    font-size: 0.9rem;
+    color: #b78b6d;
+    top: 5px;
+  }
+  /* Form Groups */
+  .form-group {
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d8c6b4;
+    border-radius: 2px;
+    background: transparent;
+    font-size: 1rem;
+    color: #333;
+  }
+  .form-group input::placeholder {
+    color: #b4a28e;
+  }
+  .form-group small {
+    display: block;
+    margin-top: 3px;
+    font-size: 0.85rem;
+    color: #a08b76;
+  }
+  .form-group input:focus {
+    outline: none;
+    border-color: #ad8652;
+  }
+  /* DOB Inputs */
+  .dob-group label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .dob-inputs {
+    display: flex;
+    gap: 10px;
+  }
+  .dob-inputs input {
+    flex: 1;
+  }
+  /* Industry Input & Search Icon */
+  .industry-input {
+    display: flex;
+    align-items: center;
+  }
+  .industry-input input {
+    flex: 1;
+  }
+  .search-icon {
+    position: absolute;
+    right: 12px;
+    top: 13px;
+    font-size: 1rem;
+    color: #b4a28e;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+  /* Actions */
+  .form-actions {
+    margin-top: 22px;
+    text-align: left;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+  .form-actions button {
+    background-color: #c28b6b;
+    border: none;
+    color: white;
+    padding: 10px 26px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+  }
+  .form-actions button:hover {
+    background-color: #ad8652;
+  }
+  /* Secondary button (Back) */
+  .secondary-button {
+    background: none;
+    border: 1px solid #ad8652;
+    color: #ad8652;
+    padding: 10px 26px;
+    border-radius: 3px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .secondary-button:hover {
+    background: #f5ece3;
+  }
+  /* Profile Add Button */
+  .profile-add-button {
+    background-color: #c28b6b;
+    border: none;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+  .profile-add-button:hover {
+    background-color: #ad8652;
+  }
+  .added-profiles-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 10px;
+    color: #ad8652;
+  }
+  

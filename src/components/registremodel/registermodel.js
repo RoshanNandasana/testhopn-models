@@ -68,18 +68,22 @@ export default function RegisterModel() {
     // DOB
     dobDay: '', dobMonth: '', dobYear: '',
     // Location
-    country: '', city: '', availableToTravel: false,
+    country: '', city: '', availableToTravel: false,street: '', nr: '', postalCode: '', aptNr: '',
     // Language
     language: '',
     // Contact
-    phone: '', email: '',
+    phone: '', email: '',socialMediaLink: '', socialMediaLinks: [] ,
     // Professional
     modelTypes: [], experience: '', serviceSearch: '', brandSearch: '',
     brandTags: [], styleTags: [], preferences: '',
     // Measurements
     height: '', bust: '', waist: '', hips: '', shoeSize: '', hairColor: '', eyeColor: '',
     // Portfolio
-    profilePhoto: null, galleryPhotos: [], videos: [], videoLink: '', instagram: '',
+    profilePhoto: null, galleryPhotos: [], videoLink: "",
+    videoLinks: [],
+    instagram: "",
+    otherSocial: "",
+    otherSocialLinks: [],
     // Availability
     availability: {
       pauseBetween: '30',
@@ -107,6 +111,12 @@ export default function RegisterModel() {
           : { ...prev, [name]: value }
     );
   };
+
+  const photoInputRef = React.useRef(null);
+  const galleryInputRef = React.useRef(null);
+const videoInputRef = React.useRef(null);
+
+
 
   // Model Types
   const handleModelTypeChange = (e) => {
@@ -211,20 +221,37 @@ export default function RegisterModel() {
 
       {/* 3: Location */}
       {step === 2 && (
-        <form onSubmit={e => { e.preventDefault(); nextStep(); }}>
-          <div className="section-title"><span className="icon"><img src="/images/icons/register3.jpg" alt="" /></span>Location</div>
-          <select name="country" value={formData.country} onChange={handleChange} required>
-            <option value="">Country *</option>
-            {countries.map(c => <option key={c} value={c}>{c}</option>)}
-          </select>
-          <select name="city" value={formData.city} onChange={handleChange} required disabled={!formData.country}>
-            <option value="">City *</option>
-            {(cities[formData.country] || []).map(city => <option key={city} value={city}>{city}</option>)}
-          </select>
-          <label className="travel-checkbox"><input type="checkbox" name="availableToTravel" checked={formData.availableToTravel} onChange={handleChange}/> Available to Travel</label>
-          <button type="submit" className="next-btn">Next</button>
-        </form>
-      )}
+  <form onSubmit={e => { e.preventDefault(); nextStep(); }}>
+    <div className="section-title">
+      <span className="icon">
+        <img src="/images/icons/register3.jpg" alt="" />
+      </span>
+      Location & Address
+    </div>
+    <select name="country" value={formData.country} onChange={handleChange} required>
+      <option value="">Country *</option>
+      {countries.map(c => <option key={c} value={c}>{c}</option>)}
+    </select>
+    <select name="city" value={formData.city} onChange={handleChange} required disabled={!formData.country}>
+      <option value="">City *</option>
+      {(cities[formData.country] || []).map(city => <option key={city} value={city}>{city}</option>)}
+    </select>
+    <label className="travel-checkbox">
+      <input type="checkbox" name="availableToTravel" checked={formData.availableToTravel} onChange={handleChange}/>
+      Available to Travel
+    </label>
+    <input type="text" name="street" placeholder="Street" value={formData.street || ''} onChange={handleChange} style={{marginBottom:"22px"}} />
+    
+    <div className="address-row">
+      <input type="text" name="nr" placeholder="Nr" value={formData.nr || ''} onChange={handleChange} />
+      <input type="text" name="postalCode" placeholder="Postal Code" value={formData.postalCode || ''} onChange={handleChange} />
+      <input type="text" name="aptNr" placeholder="Apt. Nr" value={formData.aptNr || ''} onChange={handleChange} />
+    </div>
+    
+    <button type="submit" className="next-btn">Next</button>
+  </form>
+)}
+
 
       {/* 4: Language */}
       {step === 3 && (
@@ -237,14 +264,65 @@ export default function RegisterModel() {
 
       {/* 5: Contact */}
       {step === 4 && (
-        <form onSubmit={e => { e.preventDefault(); nextStep(); }}>
-          <div className="section-title"><span className="icon"><img src="/images/icons/register5.jpg" alt="" /></span>Contacts</div>
-          <input type="text" name="phone" placeholder="Phone number" value={formData.phone} onChange={handleChange} required />
-          <input type="email" name="email" placeholder="Email *" value={formData.email} onChange={handleChange} required />
-          <p className="note">We need a phone number, email, and address</p>
-          <button type="submit" className="next-btn">Next</button>
-        </form>
-      )}
+  <form onSubmit={e => { e.preventDefault(); nextStep(); }}>
+    <div className="section-title">
+      <span className="icon"><img src="/images/icons/register5.jpg" alt="" /></span>
+      Contacts
+    </div>
+    <input
+      type="text"
+      name="phone"
+      placeholder="Phone number"
+      value={formData.phone}
+      onChange={handleChange}
+    />
+    <input
+      type="email"
+      name="email"
+      placeholder="Email *"
+      value={formData.email}
+      onChange={handleChange}
+      required
+    />
+    <div className="social-link-row">
+      <input
+        type="text"
+        name="socialMediaLink"
+        placeholder="Social Media Link"
+        value={formData.socialMediaLink || ""}
+        onChange={handleChange}
+      />
+      <button
+        type="button"
+        className="add-link-btn"
+        onClick={() => {
+          if (formData.socialMediaLink && formData.socialMediaLink.trim() !== "") {
+            setFormData(prev => ({
+              ...prev,
+              socialMediaLinks: [...(prev.socialMediaLinks || []), prev.socialMediaLink],
+              socialMediaLink: ""
+            }));
+          }
+        }}
+      >+ Add</button>
+    </div>
+
+    {/* Optional: Display added social links below the input */}
+    {formData.socialMediaLinks && formData.socialMediaLinks.length > 0 && (
+      <ul className="added-links-list">
+        {formData.socialMediaLinks.map((l, idx) => (
+          <li key={idx}>{l}</li>
+        ))}
+      </ul>
+    )}
+
+    <div className="form-step-actions" style={{ display: "flex", justifyContent: "flex-end", marginTop: "25px", gap: "20px" }}>
+      <button type="button" className="next-btn secondary" onClick={prevStep}>Back</button>
+      <button type="submit" className="next-btn">Next</button>
+    </div>
+  </form>
+)}
+
 
       {/* 6: Professional Info */}
       {step === 5 && (
@@ -346,23 +424,249 @@ export default function RegisterModel() {
       {step === 7 && (
         <form onSubmit={e => { e.preventDefault(); nextStep(); }}>
           <div className="section-title">Portfolio</div>
-          <div>
-            <label className="professional-label">Profile Photo<br/>
-              <input type="file" accept="image/*" name="profilePhoto" onChange={handleChange} />
-            </label>
+          <div className="photo-upload-box">
+  <div
+    className="photo-drag-area"
+    onClick={() => photoInputRef.current.click()}
+    onDrop={e => {
+      e.preventDefault();
+      if (e.dataTransfer.files[0]) {
+        handleChange({ target: { name: 'profilePhoto', type: 'file', files: e.dataTransfer.files } });
+      }
+    }}
+    onDragOver={e => e.preventDefault()}
+  >
+    <input
+      type="file"
+      accept="image/*"
+      name="profilePhoto"
+      style={{ display: "none" }}
+      ref={photoInputRef}
+      onChange={handleChange}
+    />
+    {formData.profilePhoto ? (
+      <img
+        src={typeof formData.profilePhoto === "string"
+          ? formData.profilePhoto
+          : URL.createObjectURL(formData.profilePhoto)}
+        alt="profile preview"
+        className="photo-preview"
+      />
+    ) : (
+      <>
+        <div className="photo-svg-icon">
+          {/* You can use an inline SVG or an img, below is an SVG placeholder */}
+          <svg width="95" height="80" viewBox="0 0 90 74" fill="none">
+            <rect x="4" y="4" width="82" height="66" rx="12" stroke="#C28B6B" strokeWidth="2.2" fill="none"/>
+            <circle cx="66" cy="16" r="4" fill="#C28B6B" fillOpacity=".3"/>
+            <polyline points="13,64 36,42 58,59 77,37" fill="none" stroke="#C28B6B" strokeWidth="2"/>
+          </svg>
+        </div>
+        <div className="photo-drag-label">Drag or Upload a Photo</div>
+      </>
+    )}
+  </div>
+  <div className="photo-caption">
+    Photo will be shown as your personal profile photo on the platform
+  </div>
+  <button
+    type="button"
+    className="photo-upload-btn"
+    onClick={() => photoInputRef.current.click()}
+  >Upload</button>
+</div>
+
+        {/* Gallery Photos */}
+<div style={{ marginTop: 32 }}>
+  <label className="professional-label" style={{marginBottom: 8, display: 'block'}}>Gallery Photos</label>
+  <div className="photo-upload-box">
+    <div
+      className="photo-drag-area"
+      onClick={() => galleryInputRef.current.click()}
+      onDrop={e => {
+        e.preventDefault();
+        if (e.dataTransfer.files.length) {
+          handleChange({ target: { name: 'galleryPhotos', type: 'file', files: e.dataTransfer.files } });
+        }
+      }}
+      onDragOver={e => e.preventDefault()}
+    >
+      <input
+        type="file"
+        accept="image/*"
+        name="galleryPhotos"
+        style={{ display: "none" }}
+        ref={galleryInputRef}
+        multiple
+        onChange={handleChange}
+      />
+      {(formData.galleryPhotos && formData.galleryPhotos.length > 0) ? (
+        <div style={{display: 'flex', flexWrap: 'wrap', gap: '9px', justifyContent: 'center', marginTop: 8}}>
+          {formData.galleryPhotos.map((file, idx) => (
+            <img key={idx}
+              src={typeof file === "string" ? file : URL.createObjectURL(file)}
+              alt={`gallery-${idx}`}
+              className="gallery-photo-preview"
+            />
+          ))}
+        </div>
+      ) : (
+        <>
+          <div className="photo-svg-icon">
+            <svg width="95" height="80" viewBox="0 0 90 74" fill="none">
+              <rect x="4" y="4" width="82" height="66" rx="12" stroke="#C28B6B" strokeWidth="2.2" fill="none"/>
+              <circle cx="66" cy="16" r="4" fill="#C28B6B" fillOpacity=".3"/>
+              <polyline points="13,64 36,42 58,59 77,37" fill="none" stroke="#C28B6B" strokeWidth="2"/>
+            </svg>
           </div>
-          <div>
-            <label className="professional-label">Gallery Photos<br/>
-              <input type="file" accept="image/*" name="galleryPhotos" multiple onChange={handleChange} />
-            </label>
+          <div className="photo-drag-label">Drag or Upload a Photo</div>
+        </>
+      )}
+    </div>
+    <div className="photo-caption">
+      Photos will be shown in your photo gallery in your personal model card
+    </div>
+    <button
+      type="button"
+      className="photo-upload-btn"
+      onClick={() => galleryInputRef.current.click()}
+    >Upload</button>
+  </div>
+</div>
+
+{/* Videos */}
+<div style={{ marginTop: 40 }}>
+  <label className="professional-label" style={{marginBottom: 8, display: 'block'}}>Videos</label>
+  <div className="photo-upload-box">
+    <div
+      className="photo-drag-area"
+      onClick={() => videoInputRef.current.click()}
+      onDrop={e => {
+        e.preventDefault();
+        if (e.dataTransfer.files.length) {
+          handleChange({ target: { name: 'videos', type: 'file', files: e.dataTransfer.files } });
+        }
+      }}
+      onDragOver={e => e.preventDefault()}
+    >
+      <input
+        type="file"
+        accept="video/*"
+        name="videos"
+        style={{ display: "none" }}
+        ref={videoInputRef}
+        multiple
+        onChange={handleChange}
+      />
+      {(formData.videos && formData.videos.length > 0) ? (
+        <div style={{display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center', marginTop: 8}}>
+          {formData.videos.map((file, idx) => (
+            <video key={idx}
+              src={typeof file === "string" ? file : URL.createObjectURL(file)}
+              style={{width: "88px", height: "66px", borderRadius: "8px", objectFit: "cover", background: "#eee"}}
+              controls
+            />
+          ))}
+        </div>
+      ) : (
+        <>
+          <div className="photo-svg-icon">
+            <svg width="95" height="80" viewBox="0 0 90 74" fill="none">
+              <rect x="4" y="4" width="82" height="66" rx="12" stroke="#C28B6B" strokeWidth="2.2" fill="none"/>
+              <circle cx="66" cy="16" r="4" fill="#C28B6B" fillOpacity=".3"/>
+              <polyline points="13,64 36,42 58,59 77,37" fill="none" stroke="#C28B6B" strokeWidth="2"/>
+            </svg>
           </div>
-          <div>
-            <label className="professional-label">Videos<br/>
-              <input type="file" accept="video/*" name="videos" multiple onChange={handleChange} />
-            </label>
-          </div>
-          <input type="text" name="videoLink" placeholder="Link to Your Video" value={formData.videoLink} onChange={handleChange} />
-          <input type="text" name="instagram" placeholder="Instagram Account" value={formData.instagram} onChange={handleChange} />
+          <div className="photo-drag-label">Drag or Upload a Video</div>
+        </>
+      )}
+    </div>
+    <div className="photo-caption">
+      Videos will be shown in your photo gallery in your personal model card
+    </div>
+    <button
+      type="button"
+      className="photo-upload-btn"
+      onClick={() => videoInputRef.current.click()}
+    >Upload</button>
+  </div>
+</div>
+{/* Link to Your Video */}
+<div className="input-row-with-btn">
+  <input
+    type="text"
+    name="videoLink"
+    placeholder="Paste a link"
+    value={formData.videoLink}
+    onChange={handleChange}
+    autoComplete="off"
+  />
+  <button
+    type="button"
+    className="input-add-btn"
+    onClick={() => {
+      if (formData.videoLink && formData.videoLink.trim() !== "") {
+        setFormData(prev => ({
+          ...prev,
+          videoLinks: [...(prev.videoLinks || []), prev.videoLink],
+          videoLink: ""
+        }));
+      }
+    }}
+  >+ Add a Link</button>
+</div>
+
+{/* Instagram Account */}
+<input
+  type="text"
+  name="instagram"
+  placeholder="@username"
+  value={formData.instagram}
+  onChange={handleChange}
+  autoComplete="off"
+/>
+
+{/* Other Social Medias */}
+<div className="input-row-with-btn">
+  <input
+    type="text"
+    name="otherSocial"
+    placeholder="URL"
+    value={formData.otherSocial}
+    onChange={handleChange}
+    autoComplete="off"
+  />
+  <button
+    type="button"
+    className="input-add-btn"
+    onClick={() => {
+      if (formData.otherSocial && formData.otherSocial.trim() !== "") {
+        setFormData(prev => ({
+          ...prev,
+          otherSocialLinks: [...(prev.otherSocialLinks || []), prev.otherSocial],
+          otherSocial: ""
+        }));
+      }
+    }}
+  >+ Add a Link</button>
+</div>
+{formData.videoLinks && formData.videoLinks.length > 0 && (
+  <ul className="added-links-list">
+    {formData.videoLinks.map((l, idx) => (
+      <li key={idx}>{l}</li>
+    ))}
+  </ul>
+)}
+{formData.otherSocialLinks && formData.otherSocialLinks.length > 0 && (
+  <ul className="added-links-list">
+    {formData.otherSocialLinks.map((l, idx) => (
+      <li key={idx}>{l}</li>
+    ))}
+  </ul>
+)}
+
+
+        
           <button type="submit" className="next-btn">Next</button>
         </form>
       )}

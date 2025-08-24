@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import ModelProfile from './ModelProfile.jsx'; // adjust path if needed
 import './view.css';
 
 const View = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isDateTimeOpen, setIsDateTimeOpen] = useState(false);
+  const [selectedModel, setSelectedModel] = useState(null);
 
-  // Filters state
   const [filters, setFilters] = useState({
     dateTime: { start: '', end: '' },
     city: '',
@@ -19,7 +20,7 @@ const View = () => {
     sortBy: ''
   });
 
-  // Example dataset of models
+  // Models data
   const models = [
     {
       name: 'Tiana Stoltz',
@@ -156,13 +157,15 @@ const View = () => {
       rating: 5,
       languages: ['English', 'German'],
       experience: 'Expert'
-    },
+    }
   ];
 
+  // filter change handler
   const handleFilterChange = (type, value) => {
     setFilters((prev) => ({ ...prev, [type]: value }));
   };
 
+  // clear all filters
   const clearFilters = () => {
     setFilters({
       dateTime: { start: '', end: '' },
@@ -178,7 +181,7 @@ const View = () => {
     });
   };
 
-  // Filter & sort models
+  // filtered models with sorting
   const filteredModels = models
     .filter((model) => (
       (!filters.city || model.city.toLowerCase() === filters.city.toLowerCase()) &&
@@ -194,17 +197,32 @@ const View = () => {
       if (filters.sortBy === 'name') return a.name.localeCompare(b.name);
       if (filters.sortBy === 'price-low') {
         const priceA = parseInt(a.price.split('-')[0]) || 500;
-        const priceB = parseInt(b.price.split('-')) || 500;
+        const priceB = parseInt(b.price.split('-')[0]) || 500;
         return priceA - priceB;
       } else if (filters.sortBy === 'price-high') {
-        const priceA = parseInt(a.price.split('-')) || 500;
-        const priceB = parseInt(b.price.split('-')) || 500;
+        const priceA = parseInt(a.price.split('-')[0]) || 500;
+        const priceB = parseInt(b.price.split('-')[0]) || 500;
         return priceB - priceA;
       } else if (filters.sortBy === 'rating') {
         return b.rating - a.rating;
       }
       return 0;
     });
+
+  // When a model image is clicked
+  const handleModelClick = (model) => {
+    setSelectedModel(model);
+  };
+
+  // Close model profile
+  const handleCloseProfile = () => {
+    setSelectedModel(null);
+  };
+
+  // If a model is selected, show profile instead of gallery
+  if (selectedModel) {
+    return <ModelProfile model={selectedModel} onClose={handleCloseProfile} />;
+  }
 
   return (
     <div className="gallery-page">
@@ -373,20 +391,24 @@ const View = () => {
         </div>
 
         <div className="gallery-grid">
-          {filteredModels.length > 0 ? (
-            filteredModels.map((model, index) => (
-              <div key={index} className="model-card">
-                <div className="image-wrapper">
-                  <img className="main-img" src={model.image} alt={model.name} />
-                  <div className="hover-details">
-                    {model.details.map((line, i) => <p key={i}>{line}</p>)}
-                  </div>
+          {filteredModels.length > 0 ? filteredModels.map((model, idx) => (
+            <div key={idx} className="model-card">
+              <div className="image-wrapper">
+                <img
+                  className="main-img"
+                  src={model.image}
+                  alt={model.name}
+                  onClick={() => handleModelClick(model)}
+                  style={{ cursor: 'pointer' }}
+                />
+                <div className="hover-details">
+                  {model.details.map((d, i) => <p key={i}>{d}</p>)}
                 </div>
-                <h3>{model.name}</h3>
-                <p>{model.location}</p>
               </div>
-            ))
-          ) : (
+              <h3>{model.name}</h3>
+              <p>{model.location}</p>
+            </div>
+          )) : (
             <p>No models match the selected filters.</p>
           )}
         </div>
