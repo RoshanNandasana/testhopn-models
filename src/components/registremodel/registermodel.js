@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import './registermodel.css';
 
@@ -800,5 +799,4 @@ const videoInputRef = React.useRef(null);
     </div>
   );
 }
-=======
->>>>>>> 042eb02de74c7abe03cb6a0d55ca0ba8b16f281d
+

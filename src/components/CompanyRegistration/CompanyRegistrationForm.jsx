@@ -13,12 +13,9 @@ export default function CompanyRegistrationForm({ onSwitch }) {
     idVerification: null, selfie: null
   });
 
-<<<<<<< HEAD
-=======
-  
+
 
   // Handle input changes
->>>>>>> 042eb02de74c7abe03cb6a0d55ca0ba8b16f281d
   function handleChange(e) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));

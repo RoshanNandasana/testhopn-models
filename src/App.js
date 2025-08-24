@@ -12,9 +12,9 @@ import Footer from "./components/homepage/Footer";
 import Gallery from "./components/gallery/view";
 import RegisterModel from "./components/registremodel/registermodel";
 import ModelProfile from "./components/gallery/ModelProfile";
-<<<<<<< HEAD
+
 import RegistrationPage from "./components/CompanyRegistration/RegistrationPage"; // <-- Use your switcher here
-=======
+
 import CompanyRegistrationForm from "./components/CompanyRegistration/CompanyRegistrationForm";
 import CompanyTypeStep from './components/CompanyRegistration/CompanyTypeStep';
 import CompanyRegisterFlow from './components/CompanyRegistration/CompanyRegisterFlow';
@@ -22,8 +22,6 @@ import CompanyAddressStep from './components/CompanyRegistration/CompanyAddressS
 import CompanyContactStep from './components/CompanyRegistration/CompanyContactStep';
 
 
-
->>>>>>> 042eb02de74c7abe03cb6a0d55ca0ba8b16f281d
 
 export default function App() {
   return (
@@ -46,10 +44,10 @@ export default function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/register" element={<RegisterModel />} />
           <Route path="/model-profile" element={<ModelProfile />} />
-<<<<<<< HEAD
+
           {/* Use RegistrationPage for company registration */}
           <Route path="/register-company" element={<RegistrationPage />} />
-=======
+
           <Route path="/register-company" element={<CompanyRegistrationForm />} />
           <Route path="/register/company/type" element={<CompanyTypeStep setStep={() => {}} />} />
             <Route path="/register/company/type" element={<CompanyRegisterFlow />} />
@@ -58,7 +56,7 @@ export default function App() {
           element={<CompanyAddressStep setStep={() => {}} />}
         />
                 <Route path="/company-contact" element={<CompanyContactStep setStep={() => {}} />} />
->>>>>>> 042eb02de74c7abe03cb6a0d55ca0ba8b16f281d
+
         </Routes>
 
         <Footer />
