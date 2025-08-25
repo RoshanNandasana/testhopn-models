@@ -47,9 +47,9 @@ export default function CompanyRegistrationForm({ onSwitch }) {
   }
 
   const stepConfig = [
-    { title: "Main Information", icon: "💼" },
-    { title: "Address", icon: "💼" },
-    { title: "Contacts & Social Media", icon: "💼" },
+    { title: "Main Information",icon: <img src="images/icons/registercompany1.jpg" alt="Verification" width="30" height="30" />},
+    { title: "Address",icon: <img src="images/icons/registercompany1.jpg" alt="Verification" width="30" height="30"/>},
+    { title: "Contacts & Social Media",icon: <img src="images/icons/registercompany1.jpg" alt="Verification" width="30" height="30"/>},
     { title: "Verification", icon: "🛡️" },
     { title: "Review & Submit", icon: "✔️" },
   ];
